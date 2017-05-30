@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+
   root 'application#index'
-  resources :user
+  resources :user, except: :index
   resources :group
   resources :event
   resources :project
