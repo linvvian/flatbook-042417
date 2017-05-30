@@ -1,2 +1,15 @@
 <h1>Cohorts#index</h1>
-<p>Find me in app/views/cohorts/index.html.erb</p>
+<div>
+<% if is_admin? %>
+<%= link_to "New Cohort", new_cohort_path %>
+<% end %>
+
+  <% @cohorts.each do |c| %>
+  <ul>
+  <li><%= link_to c.start_date, cohort_path(c) %></li>
+  <% if !c.nickname.blank? %>
+  <li><%= c.nickname %></li>
+  <% end %>
+  </ul>
+  <% end %>
+</div>

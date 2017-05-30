@@ -1,2 +1,12 @@
 <h1>Cohorts#show</h1>
-<p>Find me in app/views/cohorts/show.html.erb</p>
+<div>
+<%= @cohort.start_date %>
+<%= @cohort.nickname %>
+<% @cohort.users.each do |u| %>
+<ul>
+  <li><%= u.name %></li>
+</ul>
+<% end %>
+<%= link_to "Edit", edit_cohort_path %>
+<%= link_to "Delete", cohort_path(@cohort), method: :delete %>
+</div>
