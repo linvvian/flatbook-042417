@@ -1,0 +1,8 @@
+<h1>Login</h1>
+<%= form_tag login_path, method: :post do %>
+  <%= text_field_tag :email, nil, placeholder: "email" %>
+  <%= password_field_tag :password, nil, placeholder: "password" %>
+  <%= submit_tag "Login" %>
+<% end %>
+
+<br><%= link_to "Sign Up", new_user_path %>

@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Cohort.create(start_date: "042417")
+Cohort.create(start_date: "031317")
+Cohort.create(start_date: "060517")
+Cohort.create(start_date: "051517")
+
+User.new(name: "Rachel", email: "rr@ff.com", password: "rr")

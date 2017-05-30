@@ -1,6 +1,13 @@
 class SessionsController < ApplicationController
   def create
-    
+    user = User.find_by_name(params[:email])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect_to user_path(user)
+    else
+      flash[:warning] = "Invalid user/password"
+      render 'application/index'
+    end
   end
 
   def destory
