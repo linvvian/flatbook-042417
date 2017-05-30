@@ -1,5 +1,5 @@
 class Cohort < ApplicationRecord
-  has_many :students
-  has_many :instructor_cohorts
-  has_many :instructors, through: :instructor_cohorts
+  has_many :users
+  has_many :instructors, class_name: "User", foreign_key: "instructor_id"
+
 end
