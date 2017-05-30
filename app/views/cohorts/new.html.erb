@@ -1,2 +1,8 @@
 <h1>Cohorts#new</h1>
-<p>Find me in app/views/cohorts/new.html.erb</p>
+<div>
+<%= form_for @cohort do |f| %>
+  <%= f.text_field :start_date %>
+  <%= f.text_field :nickname %>
+  <%= f.submit %>
+<% end %>
+</div>

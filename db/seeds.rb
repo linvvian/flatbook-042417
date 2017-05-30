@@ -11,4 +11,4 @@ Cohort.create(start_date: "031317")
 Cohort.create(start_date: "060517")
 Cohort.create(start_date: "051517")
 
-User.new(name: "Rachel", email: "rr@ff.com", password: "rr")
+User.create(name: "Rachel", email: "rr@ff.com", password: "rr")
