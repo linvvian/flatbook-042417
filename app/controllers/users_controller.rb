@@ -6,7 +6,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    byebug
     @user = User.new(user_params(:name, :email, :password, :password_confirmation))
     @user.cohort = Cohort.find(params[:user][:cohort_id])
     if @user.save
