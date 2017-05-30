@@ -12,3 +12,13 @@ Cohort.create(start_date: "060517")
 Cohort.create(start_date: "051517")
 
 User.new(name: "Rachel", email: "rr@ff.com", password: "rr")
+
+rachel = User.new(name: "Rachel", email: "rr@ff.com", password: "rr")
+
+project = Project.new(name: "project 1")
+
+cohort = Cohort.create(nickname: "cohort")
+
+rachel.projects << project
+
+cohort.users << rachel

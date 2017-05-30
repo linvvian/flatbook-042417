@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20170530180539) do
   create_table "groups", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
+    t.integer  "creator_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -45,6 +46,13 @@ ActiveRecord::Schema.define(version: 20170530180539) do
     t.string   "github"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "projects_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "project_id"
+    t.index ["project_id"], name: "index_projects_users_on_project_id", using: :btree
+    t.index ["user_id"], name: "index_projects_users_on_user_id", using: :btree
   end
 
   create_table "user_events", force: :cascade do |t|
@@ -59,13 +67,6 @@ ActiveRecord::Schema.define(version: 20170530180539) do
     t.integer "group_id"
     t.index ["group_id"], name: "index_user_groups_on_group_id", using: :btree
     t.index ["user_id"], name: "index_user_groups_on_user_id", using: :btree
-  end
-
-  create_table "user_projects", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "project_id"
-    t.index ["project_id"], name: "index_user_projects_on_project_id", using: :btree
-    t.index ["user_id"], name: "index_user_projects_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

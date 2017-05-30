@@ -1,2 +1,18 @@
-<h1>Projects#index</h1>
-<p>Find me in app/views/projects/index.html.erb</p>
+<h1>Projects</h1>
+
+<% @cohorts.each do |coh| %>
+
+<h2><%= coh.nickname %>  - <%= coh.start_date %></h2>
+
+
+<ol>
+
+  <% coh.projects.each do |proj| %>
+
+  <li><%= link_to proj.name, project_path(proj) %></li>
+
+  <% end %>
+
+</ol>
+
+<% end %>

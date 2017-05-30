@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   resources :users, except: :index
   resources :group
   resources :event
-  resources :project
+  resources :projects
   resources :cohort
   post '/login' => 'sessions#create'
-  delete '/logout' => 'sessions#destroy' 
+  delete '/logout' => 'sessions#destroy'
   resources :session, only: [:create, :destroy]
 end
