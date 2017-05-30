@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
   before_action :find_group, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @groups = Groups.all.order("created_at DESC")
+    @groups = Group.all.order("created_at DESC")
   end
 
   def new
@@ -38,6 +38,6 @@ class GroupsController < ApplicationController
   end
 
   def group_params
-    params.require(:group).permit(:name, :description)
+    params.require(:group).permit(:name, :description, :creator_id)
   end
 end
