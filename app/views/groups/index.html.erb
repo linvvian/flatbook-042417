@@ -1,6 +1,15 @@
-<% @groups.each do |g| %>
-  <h1><%= link_to "#{g.name}", group_path(g) %></h1>
-<% end %>
+<div style="font-family: 'Metamorphous', cursive;">
+  <h1>Groups, <small>discover your flatiron groups</small></h1>
+</div>
 
-<p>Create New Group</p>
-<%= link_to "New Groups", new_group_path %>
+<div class="well">
+  <% @groups.each do |g| %>
+    <div class="list-group">
+      <h1><%= link_to "#{g.name}", group_path(g), class:"list-group-item" %></h1>
+        <p class="list-group-item-text"> <%= g.description %> </p>
+      </a>
+    </div>
+  <% end %>
+
+  <%= link_to "New Group", new_group_path, class:"btn btn-success" %>
+</div>

@@ -1,6 +1,15 @@
-<% @events.each do |e| %>
-  <h1><%= link_to "#{e.name}", event_path(e) %></h1>
-<% end %>
+<div style="font-family: 'Metamorphous', cursive;">
+  <h1>Events, <small>discover your flatiron events</small></h1>
+</div>
 
-<p>Create New Event</p>
-<%= link_to "New Events", new_event_path %>
+<div class="well">
+  <% @events.each do |e| %>
+    <div class="list-group">
+      <h1><%= link_to "#{e.name}", event_path(e), class:"list-group-item" %></h1>
+        <p class="list-group-item-text"> <%= e.description %> </p>
+      </a>
+    </div>
+  <% end %>
+
+  <%= link_to "New Event", new_event_path, class:"btn btn-success" %>
+</div>
