@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :is_author, only: :delete_comments
+  before_action :logged_author, only: :delete_comments
 
   def add_comment
     comment = Comment.create(comment_params)
@@ -20,11 +20,9 @@ class CommentsController < ApplicationController
     params.require('comment').permit('content', 'author_id')
   end
 
-  def is_author
+  def logged_author
     comment = Comment.find(params['comment_id'])
-    if comment.author != current_user
-      redirect_from_params
-    end
+    edirect_from_params unless current_user == comment.author || is_admin?
   end
 
   def redirect_from_params
