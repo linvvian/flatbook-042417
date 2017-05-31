@@ -1,6 +1,7 @@
 <h1>Update Info</h1>
 <div>
   <%= render 'form', user: @user do |f| %>
-    <%= f.text_field :github %>
+    <%= f.label :github_account %>
+    <%= f.text_field :github, class:"form-control"  %>
   <% end %>
 </div>

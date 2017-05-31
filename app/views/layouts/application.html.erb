@@ -45,7 +45,7 @@
                 <% end %>
               </div>
             <% else %>
-              <li><%= link_to "Signed in as #{current_user.name.capitalize}", root_path %></li>
+              <li><%= link_to "Signed in as #{current_user.name.capitalize}", current_user %></li>
               <li><%= link_to "Log Out", logout_path, method: :delete, class:"btn btn-outline-default" %></li>
             <% end %>
           </ul>
@@ -59,6 +59,8 @@
     <% flash.each do |key, value| %>
     <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

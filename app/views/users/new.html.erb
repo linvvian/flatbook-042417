@@ -1,7 +1,10 @@
-<h1>Sign Up</h1>
-<div>
+<div class="page-headers">
+  <h1>Sign Up</h1>
+</div>
+
+<div class="well">
   <%= render 'form', user: @user do |f| %>
-    <%= f.label :cohort_start_date %>
-    <%= f.collection_select(:cohort_id, @cohorts, :id, :start_date, prompt: true) %>
+    <br><%= f.label :cohort_start_date %><br>
+    <%= f.collection_select(:cohort_id, @cohorts, :id, :start_date, prompt: true) %><br>
   <% end %>
 </div>
