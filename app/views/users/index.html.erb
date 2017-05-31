@@ -4,11 +4,11 @@
 <% end %>
 
 <div class="well" style="padding: 30px">
-<% if @users.present? %>
-  <%= render @users %>
-<% elsif params[:search] %>
-  <p>There are no users containing the term(s) <%= params[:search] %>.</p>
+  <% if @users.present? %>
+    <%= render 'users' %>
+  <% elsif params[:search] %>
+    <p>There are no users containing the term(s) <%= params[:search] %>.</p>
   <% else %>
-  <p>Search by name.</p>
-<% end %>
+    <p>Search by name.</p>
+  <% end %>
 </div>
