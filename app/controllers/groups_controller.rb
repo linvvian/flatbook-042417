@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  before_action :logged_in
   before_action :find_group, except: [:index, :new, :create]
   helper_method :is_member?, :is_creator?
 

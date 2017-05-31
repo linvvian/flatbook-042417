@@ -1,6 +1,29 @@
-<h1><%= @event.name %></h1>
-<p><%= @event.description %></p>
+<div class="well">
+  <h1><%= @event.name %></h1>
+  <p><%= @event.description %></p>
 
-<%= link_to "Edit Event", edit_event_path %>
-<%= link_to "Delete Event", event_path, method: :delete, data: { confirm: "Are you sure?"} %>
-<%= link_to "Back", events_path %>
+  <div class="btn-gorup pull-right">
+    <%= link_to "Edit Event", edit_event_path, class:"btn btn-warning" %>
+    <%= link_to "Delete Event", event_path, method: :delete, data: { confirm: "Are you sure?"}, class:"btn btn-danger" %><br><br>
+  </div>
+
+  <%= link_to "Back", events_path, class:"btn btn-primary" %>
+</div>
+<hr>
+<div class="well well-sm">
+  <div class="pull-right">
+    <% if is_creator? %>
+    <% elsif is_member? %>
+      <%= link_to "Leave Event", leave_event_path, method: :delete, class:"btn btn-warning" %>
+      <% else %>
+      <%= link_to "Join Event", join_event_path, method: :post, class:"btn btn-success" %>
+    <% end %>
+  </div>
+  <h3>Members</h3>
+  <ul>
+    <li><%= link_to @event.creator.name, user_path(@event.creator) %> (creator)</li>
+    <% @event.users.each do |user| %>
+      <li><%= link_to user.name, user_path(user) %></li>
+    <% end %>
+  </ul>
+</div>
