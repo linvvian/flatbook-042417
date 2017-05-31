@@ -18,7 +18,7 @@ class User < ApplicationRecord
 
   def flatiron_email
     unless self.email && email.include?("flatironschool.com")
-      record.errors[:email] << 'Must be a Flatiron School student'
+      self.errors.add(:email, "Must sign up with Flatiron School email")
     end
   end
 

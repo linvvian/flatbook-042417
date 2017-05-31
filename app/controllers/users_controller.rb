@@ -14,13 +14,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params(:name, :email, :password, :password_confirmation))
-    @user.cohort = Cohort.find(params[:user][:cohort_id])
+    @cohorts = Cohort.all
+    @user = User.new(user_params(:name, :email, :password, :password_confirmation, :cohort_id))
     if @user.save
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
-      flash.now[:warning] = "Invalid"
+      flash.now[:warning] = @user.errors.messages.inspect
       render 'users/new'
     end
   end
