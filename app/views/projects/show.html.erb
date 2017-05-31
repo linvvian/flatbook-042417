@@ -1,8 +1,12 @@
 <h1><%= @project.name %></h1>
-<h2>Memebers: <%= @project.members %></h2>
-<h3>Github: <%= link_to "https://github.com/#{@project.github}", "https://github.com/#{@project.github}" %></h3>
+<h2>Memebers:
+    <% @project.users.collect.with_index(1) do |u, i| %>
+    <%= link_to u.name, user_path(u) %><%= "," unless i == @project.users.length %>
+    <% end%>
+</h2>
 <h3>Description:</h3>
 <p><%= @project.description %></p>
+<h3>Github: <%= link_to "https://github.com/#{@project.github}", "https://github.com/#{@project.github}" %></h3>
 
 <%= link_to "Edit", edit_project_path %>
 <br>
