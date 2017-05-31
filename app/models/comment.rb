@@ -21,4 +21,8 @@ class Comment < ApplicationRecord
     end
   end
 
+  def time
+    self.created_at.to_time.localtime.strftime("%B %e, %Y at %I:%M:%S %p")
+  end
+
 end
