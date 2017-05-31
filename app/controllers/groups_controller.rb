@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :find_group, only: [ :show, :edit, :update, :destroy ]
+  before_action :find_group, only: [ :show, :edit, :update, :destroy, :add_member ]
 
   def index
     @groups = Group.all.order("created_at DESC")
@@ -17,6 +17,11 @@ class GroupsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def add_member
+    @group.users << current_user
+    redirect_to group_path(@group)
   end
 
   def show

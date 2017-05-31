@@ -1,6 +1,19 @@
-<h1><%= @group.name %></h1>
-<p><%= @group.description %></p>
+<div class="well">
+  <h1><%= @group.name %></h1>
+  <p><%= @group.description %></p>
 
-<%= link_to "Edit Group", edit_group_path %>
-<%= link_to "Delete Group", group_path, method: :delete, data: { confirm: "Are you sure?"} %>
-<%= link_to "Back", groups_path %>
+  <div class="btn-gorup pull-right">
+    <%= link_to "Edit Group", edit_group_path, class:"btn btn-warning" %>
+    <%= link_to "Delete Group", group_path, method: :delete, data: { confirm: "Are you sure?"}, class:"btn btn-danger" %><br><br>
+  </div>
+
+  <%= link_to "<<", groups_path, class:"btn btn-primary" %>
+</div>
+<hr>
+<div class="well well-sm">
+  <div class="pull-right">
+    <%= link_to "Join Group", add_member_path, method: :post, class:"btn btn-success" %>
+  </div>
+  <h3>Members</h3>
+
+</div>
