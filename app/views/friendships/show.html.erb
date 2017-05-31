@@ -1,0 +1,6 @@
+<h1>Friends</h1>
+<div class="well">
+<% for user in @friends %>
+  <%= link_to user.name, user_path(user) %>
+  <% end %>
+</div>

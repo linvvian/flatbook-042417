@@ -1,5 +1,12 @@
 class UsersController < ApplicationController
   before_action :logged_in, except: [:new, :create]
+  helper_method :is_friend?
+
+  def index
+    if params[:search]
+      @users = User.search(params[:search]).order("created_at DESC")
+    end
+  end
 
   def new
     @user = User.new
@@ -19,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def destroy
@@ -44,5 +51,10 @@ class UsersController < ApplicationController
   private
   def user_params(*args)
     params.require(:user).permit(args)
+  end
+
+  def is_friend?
+    friend = User.find(params[:id])
+    current_user.friends.include?(friend)
   end
 end

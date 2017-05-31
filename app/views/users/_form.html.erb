@@ -1,0 +1,10 @@
+<div>
+  <%= form_for @user do |f| %>
+    <%= f.text_field :name %>
+    <%= f.email_field :email %>
+    <%= f.password_field :password %>
+    <%= f.password_field :password_confirmation %>
+    <%= yield f %>
+    <%= f.submit %>
+  <% end %>
+</div>

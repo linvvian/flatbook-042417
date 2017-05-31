@@ -1,16 +1,6 @@
 <h1>Sign Up</h1>
 <div>
-<%= form_for @user do |f| %>
-  <%= f.text_field :name, placeholder: "name" %>
-  <%= f.email_field :email, placeholder: "email" %>
-  <%= f.password_field :password, placeholder: "password" %>
-  <%= f.password_field :password_confirmation, placeholder: "password confirmation" %>
-  <%= f.select(:cohort_id) do %>
-  <% @cohorts.each do |c| %>
-  <%= content_tag(:option, c.start_date, value: c.id) %>
+  <%= render 'form', user: @user do |f| %>
+    <%= f.collection_select(:cohort_id, @cohorts, :id, :start_date, prompt: true) %>
   <% end %>
-  <% end %>
-  <%= f.submit %>
-
-<% end %>
 </div>

@@ -3,7 +3,7 @@
     <div class="jumbotron" align="center">
       <h1>Welcome <%= current_user.name.capitalize %>!</h1>
       <p>...</p>
-      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+      <p><%= link_to "Learn more", current_user, class: "btn btn-primary btn-lg" %></p>
     </div>
   <% else %>
     <h1>Sign Up</h1>

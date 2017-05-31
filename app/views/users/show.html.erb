@@ -1,10 +1,15 @@
-<div>
+<div class="well">
 <%= @user.name %>
 <%= @user.email %>
 <%= @user.github %>
 <%= @user.cohort.start_date %>
 
+<% if @user == current_user %>
 <%= link_to "Edit", edit_user_path %>
+<%= link_to "See Friends", show_friends_path %>
+<% elsif !is_friend? %>
+ <%= link_to "Add Friend", friendships_path(:friend_id => @user), :method => :post %>
+<% end %>
 <% if is_admin? %>
 <%= link_to "Delete", user_path(@user), method: :delete %>
 <% end %>

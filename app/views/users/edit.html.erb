@@ -1,12 +1,6 @@
 <h1>Update Info</h1>
 <div>
-<%= form_for @user do |f| %>
-  <%= f.text_field :name %>
-  <%= f.email_field :email %>
-  <%= f.password_field :password %>
-  <%= f.password_field :password_confirmation %>
-  <%= f.text_field :github %>
-  <%= f.submit %>
-
-<% end %>
+  <%= render 'form', user: @user do |f| %>
+    <%= f.text_field :github %>
+  <% end %>
 </div>
