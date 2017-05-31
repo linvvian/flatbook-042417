@@ -28,7 +28,7 @@
 <div style="margin-left: 20px;">
   <% if @user == current_user %>
     <br><%= link_to "Edit", edit_user_path, class:"btn btn-primary" %>	&nbsp;	&nbsp;
-    <%= link_to "See Friends", show_friends_path, class:"btn btn-primary" %>
+    <%= link_to "See Friends", show_friends_path, class:"btn btn-info" %>
   <% elsif !is_friend? %>
     <%= link_to "Add Friend", friendships_path(:friend_id => @user), :method => :post, class:"btn btn-primary" %>
   <% elsif is_friend? %>
@@ -36,6 +36,6 @@
   <% end %>
 
   <% if is_admin? %>
-    <%= link_to "Delete", @user, method: :delete %>
+    <%= link_to "Delete", @user, method: :delete, class:"btn btn-danger" %>
   <% end %>
 </div>
