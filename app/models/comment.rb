@@ -3,6 +3,7 @@ class Comment < ApplicationRecord
   belongs_to :event, optional: true
   belongs_to :group, optional: true
   belongs_to :user, optional: true
+  validates :content, presence: true
 
   def author
     User.find(self.author_id)
