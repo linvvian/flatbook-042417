@@ -1,5 +1,5 @@
 <div style="font-family: 'Metamorphous', cursive;">
-<h1>Cohorts#index</h1>
+<h1>Cohorts</h1>
 </div>
 
 <div class="well">
@@ -11,7 +11,7 @@
     <div class="list-group">
       <h1><%= link_to c.start_date, cohort_path(c), class:"list-group-item" %></h1>
       <% if !c.nickname.blank? %>
-      <p class="list-group-item-text"><%= c.nickname %></p> 
+      <p class="list-group-item-text"><%= c.nickname %></p>
       <% end %>
     </div>
   <% end %>

@@ -6,12 +6,13 @@
       <p><%= link_to "Learn more", current_user, class: "btn btn-primary btn-lg" %></p>
     </div>
   <% else %>
-    <h1>Sign Up</h1>
-    <%= form_tag login_path, method: :post do %>
-      <%= text_field_tag :email, nil, placeholder: "email" %>
-      <%= password_field_tag :password, nil, placeholder: "password" %>
-      <%= submit_tag "Login" %>
-    <% end %>
-    <br><%= link_to "Sign Up", new_user_path %>
+    <div class="signup">
+      <h1>Sign Up</h1>
+      <%= render '/users/form', user: @user do |f| %>
+        <%= f.label :cohort_start_date %>
+        <%= f.collection_select(:cohort_id, @cohorts, :id, :start_date, prompt: true) %>
+      <% end %>
+      <br><%= link_to "Sign Up", new_user_path, class:"btn btn-primary" %>
+    </div>
   <% end %>
 </div>

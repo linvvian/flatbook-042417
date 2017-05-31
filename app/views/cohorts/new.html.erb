@@ -1,5 +1,5 @@
 <div class="page-headers">
-  <h3>Cohorts#new</h3>
+  <h3>Cohorts</h3>
 </div>
 <div class="well">
   <%= form_for @cohort do |f| %>
@@ -7,7 +7,7 @@
       <%= f.label :start_date %>
       <%= f.text_field :start_date, class:"form-control" %>
       <%= f.label :nickname %>
-      <%= f.text_field :nickname, class:"form-control" %>
+      <%= f.text_field :nickname, class:"form-control" %><br>
       <%= f.submit class:"btn btn-primary" %>
     </div>
   <% end %>
