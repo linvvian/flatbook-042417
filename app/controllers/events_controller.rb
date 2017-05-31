@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
-  before_action :find_event, only: [ :show, :edit, :update, :destroy ]
+  before_action :logged_in
+  before_action :find_event, except: [:index, :new, :create]
+  helper_method :is_member?, :is_creator?
 
   def index
     @events = Event.all.order("created_at DESC")
@@ -40,11 +42,19 @@ class EventsController < ApplicationController
 
   private
 
-  def find_group
+  def is_member?
+    @event.users.include?(current_user)
+  end
+
+  def find_event
     @event = Event.find(params[:id])
   end
 
   def event_params
-    params.require(:event).permit(:name, :description, :creator_id)
+    params.require(:event).permit(:name, :date, :description, :creator_id)
+  end
+
+  def is_creator?
+    @event.creator == current_user
   end
 end

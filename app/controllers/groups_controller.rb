@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  before_action :logged_in
   before_action :find_group, except: [:index, :new, :create]
   helper_method :is_member?, :is_creator?
 
@@ -18,16 +19,6 @@ class GroupsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def join_group
-    @group.users << current_user
-    redirect_to group_path(@group)
-  end
-
-  def leave_group
-    @group.users.delete(current_user)
-    redirect_to group_path(@group)
   end
 
   def show

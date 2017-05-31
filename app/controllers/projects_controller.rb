@@ -2,12 +2,12 @@ class ProjectsController < ApplicationController
   before_action :logged_in
   before_action :logged_member, only: [:edit, :update, :destroy]
   def index
-    @cohorts = Cohort.all
+    @projects = Project.all
   end
 
   def new
     @project = Project.new
-    @other_students = current_user.cohort.users.where("id != #{current_user.id}")
+    @other_students = User.where("id != #{current_user.id}")
   end
 
   def create
