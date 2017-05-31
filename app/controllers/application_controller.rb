@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :is_admin?
 
   def index
+    @user = User.new
+    @cohorts = Cohort.all
   end
 
   private

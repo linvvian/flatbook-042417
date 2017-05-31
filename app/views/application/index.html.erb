@@ -6,6 +6,7 @@
       <p><%= link_to "Learn more", current_user, class: "btn btn-primary btn-lg" %></p>
     </div>
   <% else %>
+<<<<<<< HEAD
     <h1>Sign Up</h1>
     <%= form_tag login_path, method: :post do %>
       <div class="form-group">
@@ -15,5 +16,15 @@
       </div>
     <% end %>
     <br><%= link_to "Sign Up", new_user_path, class: "btn btn-primary" %>
+=======
+    <div class="signup">
+      <h1>Sign Up</h1>
+      <%= render '/users/form', user: @user do |f| %>
+        <%= f.label :cohort_start_date %>
+        <%= f.collection_select(:cohort_id, @cohorts, :id, :start_date, prompt: true) %>
+      <% end %>
+      <br><%= link_to "Sign Up", new_user_path, class:"btn btn-primary" %>
+    </div>
+>>>>>>> 1e0ceba57310e1cb4ae5f6b489e591530f17184c
   <% end %>
 </div>
