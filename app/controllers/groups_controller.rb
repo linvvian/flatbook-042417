@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
-  before_action :find_group, only: [ :show, :edit, :update, :destroy ]
+  before_action :find_group, except: [:index, :new, :create]
+  helper_method :is_member?, :is_creator?
 
   def index
     @groups = Group.all.order("created_at DESC")
@@ -40,11 +41,19 @@ class GroupsController < ApplicationController
 
   private
 
+  def is_member?
+    @group.users.include?(current_user)
+  end
+
   def find_group
     @group = Group.find(params[:id])
   end
 
   def group_params
     params.require(:group).permit(:name, :description, :creator_id)
+  end
+
+  def is_creator?
+    @group.creator == current_user
   end
 end
