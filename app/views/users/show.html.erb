@@ -3,6 +3,7 @@
   <% proverb = "Your" %>
 <% end %>
 
+
 <div class="panel-heading"><h2><%= proverb %> Profile</h2></div>
 <div class="well" style="width: 60%;">
   <table class="table table-striped">
@@ -38,4 +39,7 @@
   <% if is_admin? %>
     <%= link_to "Delete", @user, method: :delete, class:"btn btn-danger" %>
   <% end %>
+
 </div>
+
+  <%= render "comments/show" %>

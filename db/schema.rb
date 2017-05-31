@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531145900) do
+ActiveRecord::Schema.define(version: 20170531153939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,21 @@ ActiveRecord::Schema.define(version: 20170531145900) do
     t.string   "module"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "author_id"
+    t.text     "content"
+    t.integer  "project_id"
+    t.integer  "event_id"
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_comments_on_event_id", using: :btree
+    t.index ["group_id"], name: "index_comments_on_group_id", using: :btree
+    t.index ["project_id"], name: "index_comments_on_project_id", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
   create_table "events", force: :cascade do |t|
@@ -88,5 +103,9 @@ ActiveRecord::Schema.define(version: 20170531145900) do
     t.index ["cohort_id"], name: "index_users_on_cohort_id", using: :btree
   end
 
+  add_foreign_key "comments", "events"
+  add_foreign_key "comments", "groups"
+  add_foreign_key "comments", "projects"
+  add_foreign_key "comments", "users"
   add_foreign_key "users", "cohorts"
 end

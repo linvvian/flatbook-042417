@@ -8,6 +8,8 @@
 <p><%= @project.description %></p>
 <h3>Github: <%= link_to "https://github.com/#{@project.github}", "https://github.com/#{@project.github}" %></h3>
 
+  <%= render "comments/show" %>
+
 <%= link_to "Edit", edit_project_path %>
 <br>
 <%= link_to "Delete", project_path, method: "delete" %>
