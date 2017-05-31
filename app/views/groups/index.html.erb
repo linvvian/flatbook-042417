@@ -4,11 +4,11 @@
 
 <div class="well">
   <%= link_to "New Group", new_group_path, class:"btn btn-success" %>
+  <hr>
   <% @groups.each do |g| %>
     <div class="list-group">
       <h1><%= link_to "#{g.name}", group_path(g), class:"list-group-item" %></h1>
         <p class="list-group-item-text"> <%= g.description %> </p>
-      </a>
     </div>
   <% end %>
 </div>

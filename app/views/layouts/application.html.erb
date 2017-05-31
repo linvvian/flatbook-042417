@@ -45,6 +45,7 @@
                 <% end %>
               </div>
             <% else %>
+              <li><%= link_to "Search", users_path %></li>
               <li><%= link_to "Signed in as #{current_user.name.capitalize}", current_user %></li>
               <li><%= link_to "Log Out", logout_path, method: :delete, class:"btn btn-outline-default" %></li>
             <% end %>
@@ -57,7 +58,7 @@
     <!-- Navbar End -->
 
     <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
+      <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
     <div class="container">
       <%= yield %>

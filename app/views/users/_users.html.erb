@@ -1,3 +1,5 @@
-<% @users.each do |user| %>
-  <p><%= link_to user.name, user_path(user) %></p>
-<% end %>
+<div class="list-group">
+  <% @users.each do |user| %>
+    <p><h4><%= link_to user.name, user_path(user), class: "list-group-item" %></h4></p>
+  <% end %>
+</div>

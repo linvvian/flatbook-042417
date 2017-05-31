@@ -7,7 +7,7 @@ class FriendshipsController < ApplicationController
       friend = User.find(params[:friend_id])
       friend.friendships.build(:friend_id => current_user.id)
       friend.save
-      redirect_to root_url
+      redirect_to friend
     else
       flash[:notice] = "Unable to add friend."
       redirect_to root_url
@@ -18,6 +18,7 @@ class FriendshipsController < ApplicationController
     friend = User.find(params[:id])
     current_user.friends.delete(friend)
     friend.friends.delete(current_user)
+    flash[:notice] = "Removed friend."
     redirect_to friend
   end
 

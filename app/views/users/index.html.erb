@@ -1,14 +1,14 @@
-<%= form_tag users_path, method: :get, class: "navbar-form navbar-left search-form" do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>
-  <%= submit_tag "Search" %>
-<% end %>
-
 <div class="well" style="padding: 30px">
-  <% if @users.present? %>
-    <%= render 'users' %>
-  <% elsif params[:search] %>
-    <p>There are no users containing the term(s) <%= params[:search] %>.</p>
-  <% else %>
-    <p>Search by name.</p>
+  <%= form_tag users_path, method: :get do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search by name", class: "form-control" %>
+    <%= submit_tag "Search", class:"btn btn-primary" %>
   <% end %>
+  <br>
+  <div class="list-group">
+    <% if @users.present? %>
+      <%= render 'users' %>
+    <% elsif params[:search] %>
+      <p>There are no users containing [ <%= params[:search] %> ].</p>
+    <% end %>
+  </div>
 </div>
