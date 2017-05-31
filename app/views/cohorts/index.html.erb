@@ -1,15 +1,18 @@
+<div style="font-family: 'Metamorphous', cursive;">
 <h1>Cohorts#index</h1>
-<div>
+</div>
+
+<div class="well">
 <% if is_admin? %>
-<%= link_to "New Cohort", new_cohort_path %>
-<% end %>
+  <%= link_to "New Cohort", new_cohort_path, class:"btn btn-success" %>
+  <% end %>
 
   <% @cohorts.each do |c| %>
-  <ul>
-  <li><%= link_to c.start_date, cohort_path(c) %></li>
-  <% if !c.nickname.blank? %>
-  <li><%= c.nickname %></li>
-  <% end %>
-  </ul>
+    <div class="list-group">
+      <h1><%= link_to c.start_date, cohort_path(c), class:"list-group-item" %></h1>
+      <% if !c.nickname.blank? %>
+      <p class="list-group-item-text"><%= c.nickname %></p> 
+      <% end %>
+    </div>
   <% end %>
 </div>
