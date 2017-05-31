@@ -6,7 +6,7 @@
 <% if is_admin? %>
   <%= link_to "New Cohort", new_cohort_path, class:"btn btn-success" %>
   <% end %>
-
+  <hr>
   <% @cohorts.each do |c| %>
     <div class="list-group">
       <h1><%= link_to c.start_date, cohort_path(c), class:"list-group-item" %></h1>

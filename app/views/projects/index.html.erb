@@ -1,13 +1,14 @@
 <h1>Projects</h1>
 
-<ul>
+<div class="well">
+  <%= link_to "Create A New Project", new_project_path, class:"btn btn-success" %>
 
-  <% @projects.each do |proj| %>
-
-  <li><%= link_to proj.name, project_path(proj) %>  - <%= proj.members %></li>
-
+  <hr>
+  <h2>Your Projects</h2>
+  <% current_user.projects.each do |project| %>
+  <div class="list-group">
+    <h1><%= link_to "#{project.name}", project_path(project), class:"list-group-item" %></h1>
+      <p class="list-group-item-text"> <%= project.description %> </p>
+  </div>
   <% end %>
-
-</ul>
-
-<%= link_to "Create A New Project", new_project_path %>
+</div>
