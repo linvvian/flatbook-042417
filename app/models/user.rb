@@ -12,4 +12,5 @@ class User < ApplicationRecord
       where("lower(name) LIKE ?", "%#{search}%")
     end
   end
+  
 end
