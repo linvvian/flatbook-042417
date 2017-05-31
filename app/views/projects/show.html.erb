@@ -8,9 +8,7 @@
 <p><%= @project.description %></p>
 <h3>Github: <%= link_to "https://github.com/#{@project.github}", "https://github.com/#{@project.github}" %></h3>
 
-<div class="well">
   <%= render "comments/show" %>
-</div>
 
 <%= link_to "Edit", edit_project_path %>
 <br>
