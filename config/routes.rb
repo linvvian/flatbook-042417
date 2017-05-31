@@ -22,4 +22,9 @@ Rails.application.routes.draw do
   post '/users/:id/add_comment' => 'comments#add_comment'
   post '/events/:id/add_comment' => 'comments#add_comment'
   post '/groups/:id/add_comment' => 'comments#add_comment'
+
+  delete '/projects/:id/delete_comment' => 'comments#delete_comment'
+  delete '/users/:id/delete_comment' => 'comments#delete_comment'
+  delete '/events/:id/delete_comment' => 'comments#delete_comment'
+  delete '/groups/:id/delete_comment' => 'comments#delete_comment'
 end
