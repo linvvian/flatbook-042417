@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :projects
   has_secure_password
   validates :name, presence: true
-  validate :flatiron_email
+  # validate :flatiron_email
 
   def self.search(search)
     if search
@@ -16,10 +16,10 @@ class User < ApplicationRecord
     end
   end
 
-  def flatiron_email
-    unless self.email && email.include?("flatironschool.com")
-      self.errors.add(:email, "Must sign up with Flatiron School email")
-    end
-  end
+  # def flatiron_email
+  #   unless self.email && email.include?("flatironschool.com")
+  #     self.errors.add(:email, "Must sign up with Flatiron School email")
+  #   end
+  # end
 
 end
