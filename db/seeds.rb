@@ -11,12 +11,16 @@ Cohort.create(start_date: "031317")
 Cohort.create(start_date: "060517")
 Cohort.create(start_date: "051517")
 
-rachel = User.new(name: "Rachel", email: "rr@ff.com", password: "rr")
+rachel = User.create(name: "Rachel", email: "rr@ff.com", password: "rr", github: "something.com", cohort_id: 1, admin: true)
+jack = User.create(name: "Jack", email: "jack@ff.com", password: "jack", github: "something.com", cohort_id: 1, admin: true)
+dav = User.create(name: "Dav", email: "dav@ff.com", password: "dav", github: "something.com", cohort_id: 1, admin: true)
+cod = User.create(name: "Cod", email: "Cod@ff.com", password: "cod", github: "something.com", cohort_id: 1, admin: true)
+bob = User.create(name: "Bob", email: "Bob@ff.com", password: "bob", github: "something.com", cohort_id: 1, admin: true)
 
-project = Project.new(name: "project 1")
-
-cohort = Cohort.create(nickname: "cohort")
-
-rachel.projects << project
-
-cohort.users << rachel
+# project = Project.new(name: "project 1")
+#
+# cohort = Cohort.create(nickname: "cohort")
+#
+# rachel.projects << project
+#
+# cohort.users << rachel
