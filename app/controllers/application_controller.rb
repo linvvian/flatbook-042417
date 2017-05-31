@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :is_admin?
+  helper_method :current_user, :is_admin?, :page
 
   def index
   end
@@ -21,6 +21,20 @@ class ApplicationController < ActionController::Base
 
   def logged_admin
     redirect_to root_path unless is_admin?
+  end
+
+  def page
+    page_type = params[:controller]
+    case page_type
+    when "projects"
+      Project.find(params[:id])
+    when "events"
+      Event.find(params[:id])
+    when "users"
+      User.find(params[:id])
+    when "groups"
+      Group.find(params[:id])
+    end
   end
 
 end
