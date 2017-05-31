@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   resources :projects
   resources :cohorts
 
-  post '/group/:id' => 'groups#add_member', as: 'add_member'
+  post '/group/:id' => 'groups#join_group', as: 'join_group'
+  delete '/group/:id' => 'groups#leave_group', as: 'leave_group'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
 end
