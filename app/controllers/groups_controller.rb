@@ -1,13 +1,22 @@
 class GroupsController < ApplicationController
+  before_action :find_group, only: [ :show, :edit, :update, :destroy ]
+
   def index
-    #code
+    @groups = Group.all.order("created_at DESC")
   end
 
   def new
+    @group = Group.new
   end
 
   def create
-    #code
+    @group = Group.new(group_params)
+    @group.creator_id = current_user.id
+    if @group.save
+      redirect_to group_path(@group)
+    else
+      render :new
+    end
   end
 
   def show
@@ -17,9 +26,25 @@ class GroupsController < ApplicationController
   end
 
   def update
+    if @group.update(group_params)
+      redirect_to group_path(@group)
+    else
+      render :edit
+    end
   end
 
   def destroy
-    #code
+    @group.delete
+    redirect_to groups_path
+  end
+
+  private
+
+  def find_group
+    @group = Group.find(params[:id])
+  end
+
+  def group_params
+    params.require(:group).permit(:name, :description, :creator_id)
   end
 end
