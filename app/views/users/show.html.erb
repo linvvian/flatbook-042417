@@ -8,4 +8,6 @@
 <% if is_admin? %>
 <%= link_to "Delete", user_path(@user), method: :delete %>
 <% end %>
+
+<%= render "comments/show" %>
 </div>
