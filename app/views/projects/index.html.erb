@@ -1,22 +1,13 @@
 <h1>Projects</h1>
 
-<% @cohorts.each do |coh| %>
+<ul>
 
-<h2><%= coh.nickname %>  - <%= coh.start_date %></h2>
+  <% @projects.each do |proj| %>
 
-
-<ol>
-
-  <% coh.projects.each do |proj| %>
-
-  <li><%= link_to proj.name, project_path(proj) %></li>
+  <li><%= link_to proj.name, project_path(proj) %>  - <%= proj.members %></li>
 
   <% end %>
 
-</ol>
+</ul>
 
-<% end %>
-
-<br>
-
-<%= link_to "Create A New Project", new_projects_path %>
+<%= link_to "Create A New Project", new_project_path %>

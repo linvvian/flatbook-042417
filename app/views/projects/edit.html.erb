@@ -11,7 +11,8 @@
   <%= f.text_field :github %>
   <br>
   <%= f.label "Project Members: " %>
-  <%= f.collection_check_boxes :user_ids, @other_students, :id, :name%>
+  <br>
+  <%= f.collection_select :user_ids, @other_students, :id, :name, {:include_blank => false}, {:multiple => true}  %>
   <br>
   <%= f.submit %>
 <% end %>
