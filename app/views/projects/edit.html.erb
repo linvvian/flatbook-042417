@@ -1,2 +1,17 @@
-<h1>Projects#edit</h1>
-<p>Find me in app/views/projects/edit.html.erb</p>
+<h1>Edit Project: <%= @project.name %></h1>
+
+<%= form_for(@project) do |f| %>
+  <%= f.label "Project Name: " %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label "Project Description: " %>
+  <%= f.text_area :description %>
+  <br>
+  <%= f.label "Github Link: " %>
+  <%= f.text_field :github %>
+  <br>
+  <%= f.label "Project Members: " %>
+  <%= f.collection_check_boxes :user_ids, @other_students, :id, :name%>
+  <br>
+  <%= f.submit %>
+<% end %>

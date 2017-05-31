@@ -11,4 +11,12 @@ Cohort.create(start_date: "031317")
 Cohort.create(start_date: "060517")
 Cohort.create(start_date: "051517")
 
-User.create(name: "Rachel", email: "rr@ff.com", password: "rr", github: "something.com", cohort_id: 1, admin: true)
+rachel = User.new(name: "Rachel", email: "rr@ff.com", password: "rr")
+
+project = Project.new(name: "project 1")
+
+cohort = Cohort.create(nickname: "cohort")
+
+rachel.projects << project
+
+cohort.users << rachel
