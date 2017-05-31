@@ -7,11 +7,19 @@ class User < ApplicationRecord
   has_and_belongs_to_many :groups
   has_and_belongs_to_many :projects
   has_secure_password
+  validates :name, presence: true
+  validate :flatiron_email
 
   def self.search(search)
     if search
       where("lower(name) LIKE ?", "%#{search}%")
     end
   end
-  
+
+  def flatiron_email
+    unless self.email && email.include?("flatironschool.com")
+      record.errors[:email] << 'Must be a Flatiron School student'
+    end
+  end
+
 end
