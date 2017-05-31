@@ -11,8 +11,9 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
+    @group.creator_id = current_user.id
     if @group.save
-      redirect_to show_path(@group)
+      redirect_to group_path(@group)
     else
       render :new
     end
@@ -25,10 +26,16 @@ class GroupsController < ApplicationController
   end
 
   def update
+    if @group.update(group_params)
+      redirect_to group_path(@group)
+    else
+      render :edit
+    end
   end
 
   def destroy
-    #code
+    @group.delete
+    redirect_to groups_path
   end
 
   private

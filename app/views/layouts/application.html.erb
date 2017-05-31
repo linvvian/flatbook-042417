@@ -9,27 +9,44 @@
   </head>
 
   <body>
+    <!-- Navbar Begin -->
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <%= link_to "Home", root_path, class: "navbar-brand" %>
-    </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><%= link_to "Cohorts", cohorts_path %></li>
-        <li><a href="#">Link</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to "Home", root_path, class: "navbar-brand" %>
+        </div>
+
+      <!-- Links -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><%= link_to "Cohorts", cohorts_path %></li>
+            <li><%= link_to "Groups", groups_path %></li>
+            <li><%= link_to "Events", events_path %></li>
+          </ul>
+
+          <!-- Right Nav Begin-->
+          <ul class="nav navbar-nav pull-right">
+           <% if current_user == nil %>
+              <li><%= link_to "Sign In", new_user_path, class:"btn btn-outline-primary" %></li>
+           <% else %>
+              <li><%= link_to "Signed in as #{current_user.name.capitalize}", root_path %></li>
+              <li><%= link_to "Log Out", logout_path, method: :delete, class:"btn btn-outline-default" %></li>
+           <% end %>
+          </ul>
+          <!-- Right Nav End -->
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+
     </nav>
+    <!-- Navbar End -->
+
     <% flash.each do |key, value| %>
     <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
