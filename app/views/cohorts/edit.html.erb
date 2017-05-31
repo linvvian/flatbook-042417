@@ -1,8 +1,8 @@
-<h1>Cohorts#edit</h1>
-<div>
+<h1>Edit Cohort</h1>
+<div class="well">
 <%= form_for @cohort do |f| %>
-  <%= f.text_field :start_date %>
-  <%= f.text_field :nickname %>
-  <%= f.submit %>
+  <%= f.text_field :start_date, class: "form-control", disabled:"" %>
+  <%= f.text_field :nickname, class: "form-control", placeholder: "nickname"%>
+  <br><%= f.submit class:"btn btn-primary" %>
 <% end %>
 </div>

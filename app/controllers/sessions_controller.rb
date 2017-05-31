@@ -1,12 +1,17 @@
 class SessionsController < ApplicationController
   def create
-    user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect_to user_path(user)
+    if params[:email].blank? || params[:password].blank?
+      flash[:warning] = "Needs email/password"
+      redirect_to root_path
     else
-      flash[:warning] = "Invalid user/password"
-      render 'application/index'
+      user = User.find_by(email: params[:email])
+      if user && user.authenticate(params[:password])
+        session[:user_id] = user.id
+        redirect_to user_path(user)
+      else
+        flash[:warning] = "Invalid email/password"
+        redirect_to root_path
+      end
     end
   end
 
