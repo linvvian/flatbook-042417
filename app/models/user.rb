@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :friends, :through => :friendships
   belongs_to :cohort
+  has_many :comments
   has_and_belongs_to_many :events
   has_and_belongs_to_many :groups
   has_and_belongs_to_many :projects

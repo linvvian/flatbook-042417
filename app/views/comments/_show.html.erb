@@ -1,0 +1,44 @@
+
+<h3>Comments</h3>
+
+<div class="container">
+  <% page.comments.each do |comment| %>
+  <div class="row">
+    <div class="col-sm-1">
+      <div class="thumbnail">
+        <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+      </div><!-- /thumbnail -->
+    </div><!-- /col-sm-1 -->
+
+    <div class="col-sm-5">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong><%= link_to comment.author.name, user_path(comment.author_id) %></strong> <span class="text-muted"><%= comment.created_at %></span>
+        </div>
+        <div class="panel-body">
+          <%= comment.content %>
+        </div><!-- /panel-body -->
+      </div><!-- /panel panel-default -->
+    </div><!-- /col-sm-5 -->
+  </div><!-- /row -->
+  <% end %>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong>New Comment</strong>
+        </div>
+        <div class="panel-body">
+          <%= form_tag "#{params[:id]}/add_comment", method: "post" do %>
+          <%= hidden_field_tag :'[comment][page_type]', page.class %>
+          <%= hidden_field_tag :'[comment][page_id]', page.id %>
+          <%= hidden_field_tag :'[comment][author_id]', current_user.id %>
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <%= text_area_tag :'[comment][content]', nil, style: "width: 100%" %><br>
+          <%= submit_tag "submit" %>
+          <% end %>
+        </div><!-- /panel-body -->
+      </div><!-- /panel panel-default -->
+    </div><!-- /col-sm-5 -->
+  </div><!-- /row -->
+</div><!-- /container -->
