@@ -2,7 +2,6 @@
   <h1><%= @event.name %></h1>
   <p><%= @event.description %></p>
 
-<<<<<<< HEAD
   <div class="btn-gorup pull-right">
     <%= link_to "Edit Event", edit_event_path, class:"btn btn-warning" %>
     <%= link_to "Delete Event", event_path, method: :delete, data: { confirm: "Are you sure?"}, class:"btn btn-danger" %><br><br>
@@ -28,10 +27,11 @@
     <% end %>
   </ul>
 </div>
-=======
+
 <%= link_to "Edit Event", edit_event_path %>
 <%= link_to "Delete Event", event_path, method: :delete, data: { confirm: "Are you sure?"} %>
 <%= link_to "Back", events_path %>
 
-<%= render "comments/show" %>
->>>>>>> comments
+<div class="well">
+  <%= render "comments/show" %>
+</div>
