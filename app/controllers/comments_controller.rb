@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
       comment.update(event_id: params['comment']['page_id'])
       redirect_to event_path(params['comment']['page_id'])
     when "Group"
-      comment.update(project_id: params['comment']['page_id'])
+      comment.update(group_id: params['comment']['page_id'])
       redirect_to group_path(params['comment']['page_id'])
     end
   end
