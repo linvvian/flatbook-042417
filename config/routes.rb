@@ -11,5 +11,9 @@ Rails.application.routes.draw do
   delete '/groups/:id/leave' => 'groups_users#leave_group', as: 'leave_group'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
+
   post '/projects/:id/add_comment' => 'comments#add_comment'
+  post '/users/:id/add_comment' => 'comments#add_comment'
+  post '/events/:id/add_comment' => 'comments#add_comment'
+  post '/groups/:id/add_comment' => 'comments#add_comment'
 end

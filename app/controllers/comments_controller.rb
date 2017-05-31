@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
 
   def add_comment
-    byebug
     comment = Comment.create(comment_params)
     case params['comment']['page_type']
     when "Project"
