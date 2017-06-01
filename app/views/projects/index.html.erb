@@ -2,7 +2,9 @@
 
 <div class="well">
   <%= link_to "Create A New Project", new_project_path, class:"btn btn-success" %>
-  <hr>
+  <% if !@projects.empty? %>
+    <hr>
+  <% end %>
   <% @projects.each do |project| %>
     <div class="list-group">
       <h1><%= link_to "#{project.name}", project_path(project), class:"list-group-item" %></h1>

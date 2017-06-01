@@ -2,10 +2,12 @@
   <h1><%= @event.name %></h1>
   <p><%= @event.description %></p>
 
+<% if is_creator? || is_admin? %>
   <div class="btn-gorup pull-right">
     <%= link_to "Edit Event", edit_event_path, class:"btn btn-warning" %>
     <%= link_to "Delete Event", event_path, method: :delete, data: { confirm: "Are you sure?"}, class:"btn btn-danger" %><br><br>
   </div>
+<% end %>
 
   <%= link_to "Back", events_path, class:"btn btn-primary" %>
 </div>
@@ -19,7 +21,7 @@
       <%= link_to "Join Event", join_event_path, method: :post, class:"btn btn-success" %>
     <% end %>
   </div>
-  <h3>Attending</h3>
+  <div style="margin-left:12px"><h3>Attending</h3></div>
   <ul>
     <li><%= link_to @event.creator.name, user_path(@event.creator) %> (creator)</li>
     <% @event.members.each do |member| %>

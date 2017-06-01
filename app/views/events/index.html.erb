@@ -4,7 +4,9 @@
 
 <div class="well">
   <%= link_to "New Event", new_event_path, class:"btn btn-success" %>
-  <hr>
+  <% if !@events.empty? %>
+    <hr>
+  <% end %>
   <% @events.each do |e| %>
     <div class="list-group">
       <h1><%= link_to "#{e.name}", event_path(e), class:"list-group-item" %></h1>
