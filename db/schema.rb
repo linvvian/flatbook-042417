@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20170601153940) do
     t.datetime "updated_at",                      null: false
     t.string   "uid"
     t.string   "provider"
+    t.string   "image"
     t.index ["cohort_id"], name: "index_users_on_cohort_id", using: :btree
   end
 

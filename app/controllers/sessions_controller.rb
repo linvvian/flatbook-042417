@@ -7,11 +7,11 @@ class SessionsController < ApplicationController
       redirect_to user_path(user)
     elsif auth
       session[:omniauth] = auth.except('extra')
-      user = User.sign_in_from_omniauth(auth)
-      session[:user_id] = user.id
-      redirect_to user_path(user)
+      auth_user = User.sign_in_from_omniauth(auth)
+      session[:user_id] = auth_user.id
+      redirect_to user_path(auth_user)
     else
-      flash[:warning] = "Invalid email/password"
+      flash[:danger] = "Invalid email/password"
       redirect_to root_path
     end
   end

@@ -38,9 +38,9 @@
           <!-- Right Nav Begin-->
           <ul class="nav navbar-nav pull-right">
             <% if current_user == nil %>
-              <div style="margin-top: 10px">
+              <div>
                 <%= form_tag login_path, method: :post do %>
-                  <%= text_field_tag :email, nil, placeholder: "email" %>
+                  <%= text_field_tag :email, nil, placeholder: "email"%>
                   <%= password_field_tag :password, nil, placeholder: "password" %>
                   <%= submit_tag "Login", class:"btn btn-primary" %>
                 <% end %>
@@ -51,7 +51,8 @@
               <%= submit_tag "Search", class:"btn btn-default" %>
             <% end %>
 
-              <li><%= link_to "Signed in as #{current_user.name.capitalize}", current_user %></li>
+              <!-- <li><%# link_to "Signed in as #{current_user.name.capitalize}", current_user %></li> -->
+              <li><%= link_to current_user do %><%= image_tag(current_user.image || "https://ssl.gstatic.com/accounts/ui/avatar_2x.png", width: '25', height: '25', class: 'img-rounded') %><% end %> </li>
               <li><%= link_to "Log Out", logout_path, method: :delete, class:"btn btn-outline-default" %></li>
             <% end %>
           </ul>
@@ -67,6 +68,11 @@
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       </div>
     <% end %>
+
+    <section>
+      <img src="../assets/images/instructors-demp.jpg" alt="">
+    </section>
+
     <div class="container">
       <%= yield %>
     </div>
