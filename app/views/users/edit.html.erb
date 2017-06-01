@@ -3,5 +3,11 @@
   <%= render 'form', user: @user do |f| %>
     <%= f.label :github_account %>
     <%= f.text_field :github, class:"form-control"  %>
+    <% if is_admin? %>
+
+    <%= f.label :admin %>
+    <%= f.check_box :admin  %>
+
+    <% end %>
   <% end %>
 </div>
