@@ -3,6 +3,7 @@ class Comment < ApplicationRecord
   belongs_to :event, optional: true
   belongs_to :group, optional: true
   belongs_to :user, optional: true
+  has_many :thumbs
   validates :content, presence: true
 
   def author
@@ -23,6 +24,30 @@ class Comment < ApplicationRecord
 
   def time
     self.created_at.to_time.localtime.strftime("%B %e, %Y at %I:%M:%S %p")
+  end
+
+  def thumb_up
+    self.thumbs.select {|thumb| thumb.like == true}
+  end
+
+  def thumb_down
+    self.thumbs.select {|thumb| thumb.like == false}
+  end
+
+  def thumb_up_users
+    thumb_up.map {|thumb| thumb.user}
+  end
+
+  def thumb_down_users
+    thumb_down.map {|thumb| thumb.user}
+  end
+
+  def likes
+    thumb_up.count
+  end
+
+  def dislikes
+    thumb_down.count
   end
 
 end
