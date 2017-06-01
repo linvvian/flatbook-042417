@@ -1,6 +1,7 @@
 <div class="well">
   <h1><%= @event.name %></h1>
-  <h2><%= @event.pretty_date %> at <%= @event.pretty_time %></h2>
+  <h2>Location: <%= @event.location %></h2>
+  <h3><%= @event.pretty_date %> at <%= @event.pretty_time %></h3>
   <p><%= @event.description %></p>
 
 <% if is_creator? || is_admin? %>
