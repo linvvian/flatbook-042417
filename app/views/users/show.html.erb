@@ -23,7 +23,7 @@
         </tr>
         <tr>
           <td><strong>Cohort: </strong></td>
-          <td><%= link_to @user.cohort.start_date, cohort_path(@user.cohort) %></td>
+          <td><%= link_to @user.cohort.start_date, cohort_path(@user.cohort) if @user.cohort%></td>
         </tr>
 
         <% if @user.admin %>
