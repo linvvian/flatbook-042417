@@ -29,6 +29,15 @@ class ApplicationController < ActionController::Base
     user == current_user
   end
 
+  def timeout_session
+    if session[:expires_at] < Time.current
+      session[:user_id] = nil
+      session[:expires_at] = nil
+      flash[:danger] = "Session Timed Out"
+      redirect_to root_path
+    end
+  end
+
   def page
     page_type = params[:controller]
     case page_type

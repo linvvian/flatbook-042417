@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   before_action :logged_in
   before_action :find_event, except: [:index, :new, :create]
   before_action :logged_creator, only: [:edit, :update, :destroy]
+  before_action :timeout_session
   helper_method :is_member?, :is_creator?
 
   def index

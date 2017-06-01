@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :logged_in
   before_action :logged_member, only: [:edit, :update, :destroy]
+  before_action :timeout_session
   helper_method :project_member
 
   def index

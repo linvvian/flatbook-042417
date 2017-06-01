@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in, except: [:new, :create]
+  before_action :timeout_session, except: [:new, :create]
   helper_method :is_friend?
 
   def index
