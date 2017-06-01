@@ -8,7 +8,7 @@ class Group < ApplicationRecord
     User.find(self.creator_id)
   end
 
-  def all_members
-    self.users + self.creator
+  def members
+    self.users.reject {|user| user == self.creator}
   end
 end
