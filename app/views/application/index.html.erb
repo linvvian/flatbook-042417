@@ -10,7 +10,7 @@
       <h1>Sign Up</h1>
       <%= render '/users/form', user: @user do |f| %>
         <br><%= f.label :cohort_start_date %><br>
-        <%= f.collection_select(:cohort_id, @cohorts, :id, :start_date, prompt: true) %><br>
+        <%= f.collection_select(:cohort_id, @cohorts, :id, :start_date, prompt: true, class: "form-control") %><br>
       <% end %>
       <h1>Or login with: </h1>
       <%= link_to 'auth/twitter' do %><%= image_tag('http://icons.iconarchive.com/icons/limav/flat-gradient-social/256/Twitter-icon.png', width: '100', height: '100', class: 'img-rounded') %><% end %>

@@ -9,8 +9,7 @@ class CommentsController < ApplicationController
   end
 
   def delete_comment
-    find_comment
-    comment.destroy
+    find_comment.destroy
     redirect_from_params
   end
 
