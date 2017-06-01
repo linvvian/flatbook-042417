@@ -28,7 +28,6 @@ class User < ApplicationRecord
       email: auth['info']['email'] || "NA",
       password: hash.to_s,
       github: auth['info']['github']|| "github.com",
-      cohort_id: 2,
       image: auth['info']['image']
     )
   end
