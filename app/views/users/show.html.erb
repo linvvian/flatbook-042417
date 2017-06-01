@@ -25,6 +25,15 @@
           <td><strong>Cohort Start Date: </strong></td>
           <td><%= @user.cohort.start_date %></td>
         </tr>
+
+        <% if @user.admin %>
+
+        <tr>
+          <td><strong>Admin: </strong></td>
+          <td><%= @user.admin %></td>
+        </tr>
+
+        <% end %>
       </table>
     </div>
   </div>
@@ -34,6 +43,9 @@
 <div id="buttons" style="margin-left: 20px;">
   <% if is_self?(@user) %>
     <%= link_to "See Friends", show_friends_path, class:"btn btn-info" %> &nbsp;	&nbsp;
+    <%= link_to "Edit", edit_user_path, class:"btn btn-primary" %>
+  <% elsif is_admin? %>
+    <%= link_to "Add Friend", friendships_path(:friend_id => @user), :method => :post, class:"btn btn-primary" %> &nbsp;	&nbsp;
     <%= link_to "Edit", edit_user_path, class:"btn btn-primary" %>
   <% elsif !is_friend? %>
     <%= link_to "Add Friend", friendships_path(:friend_id => @user), :method => :post, class:"btn btn-primary" %>
