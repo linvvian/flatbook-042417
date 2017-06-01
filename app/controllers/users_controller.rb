@@ -19,6 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params(:name, :email, :password, :password_confirmation, :cohort_id))
     if @user.save
       session[:user_id] = @user.id
+      session[:expires_at] = Time.current + 6.hours
       redirect_to user_path(@user)
     else
       flash[:danger] = "Invalid Input"
@@ -31,17 +32,22 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.delete(params[:id])
+    @user = User.find(params[:id])
+    @user.remove_self
+    User.delete(@user)
     redirect_to root_path
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def update
-    @user = current_user
-    if @user.update(user_params(:name, :email, :password, :password_confirmation, :github, :image, :admin))
+    @user = User.find(params[:id])
+    if @user.update(user_params(:name, :email, :password, :password_confirmation, :github, :admin))
+      if params[:image].blank? == false
+        @user.update(image: params[:image])
+      end
       redirect_to @user
     else
       flash.now[:warning] = "Invalid"

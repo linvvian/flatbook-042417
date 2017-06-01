@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
       session[:omniauth] = auth.except('extra')
       auth_user = User.sign_in_from_omniauth(auth)
       session[:user_id] = auth_user.id
+      session[:expires_at] = Time.current + 6.hours
       redirect_to user_path(auth_user)
     else
       flash[:danger] = "Invalid email/password"
