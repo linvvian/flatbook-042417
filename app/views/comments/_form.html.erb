@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-6">
+  <div class="col-sm-11">
     <div class="panel panel-default">
       <div class="panel-heading">
         <strong>New Comment</strong>
@@ -10,8 +10,14 @@
           <%= hidden_field_tag :'[page_id]', page.id %>
           <%= hidden_field_tag :'[comment][author_id]', current_user.id %>
           <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-          <%= text_area_tag :'[comment][content]', nil, style: "width: 100%" %><br>
-          <%= submit_tag "Add Comment",  class: "btn btn-success" %>
+          <div class="row">
+            <div class="col-sm-9">
+              <%= text_area_tag :'[comment][content]', nil, style: "width: 100%" %>
+            </div>
+            <div class="col-sm-3">
+              <%= submit_tag "Add Comment",  class: "btn btn-success pull-right" %>
+            </div>
+          </div>
         <% end %>
       </div><!-- /panel-body -->
     </div><!-- /panel panel-default -->
