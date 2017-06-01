@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
-      flash.now[:warning] = @user.errors.messages
+      flash.now[:danger] = "Invalid Input"
       render 'users/new'
     end
   end

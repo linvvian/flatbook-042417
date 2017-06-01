@@ -21,3 +21,66 @@
    padding-top: 70px;
    padding-bottom: 30px;
  }
+
+// Navbar media
+@media (max-width: 1px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
+    /* since 3.1.0 */
+    .navbar-collapse.collapse.in {
+        display: block!important;
+    }
+    .collapsing {
+        overflow: hidden!important;
+    }
+}
+
+// Buttons
+.btn.outline {
+	background: rgba(16, 80, 113, 0.77);
+	padding: 8px 18px;
+  border-radius: 8px;
+}
+
+ .btn-search.outline {
+   border: 2px solid #ffffff;
+	 color: #ffffff;
+   font-weight: bold;
+   border-radius: 8px;
+ }
+
+ .btn-search.outline:hover, .btn-search.outline:focus, .btn-search.outline:active, .btn-search.outline.active, .open > .dropdown-toggle.btn-search {
+	color: #33a6cc;
+	border-color: #ffffff;
+}
+.btn-search.outline:active, .btn-search.outline.active {
+	border-color: #007299;
+	color: #007299;
+	box-shadow: none;
+}

@@ -36,26 +36,28 @@
           </ul>
 
           <!-- Right Nav Begin-->
-          <ul class="nav navbar-nav pull-right">
-            <% if current_user == nil %>
-              <div>
-                <%= form_tag login_path, method: :post do %>
-                  <%= text_field_tag :email, nil, placeholder: "email"%>
-                  <%= password_field_tag :password, nil, placeholder: "password" %>
-                  <%= submit_tag "Login", class:"btn btn-primary" %>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav pull-right">
+              <% if current_user == nil %>
+                <div>
+                  <%= form_tag login_path, method: :post, class:"navbar-form navbar-left hidden-sm" do %>
+                    <%= text_field_tag :email, nil, placeholder: "email", class: "form-control"%>
+                    <%= password_field_tag :password, nil, placeholder: "password", class: "form-control" %>
+                    <%= submit_tag "Login", class:"btn btn-primary" %>
+                  <% end %>
+                </div>
+              <% else %>
+                <%= form_tag users_path, method: :get, class:"navbar-form navbar-left hidden-sm" do %>
+                  <%= text_field_tag :search, params[:search], placeholder: "Search by name", class: "form-control" %>
+                  <%= submit_tag "Search", class:"btn btn-search outline" %>
                 <% end %>
-              </div>
-            <% else %>
-            <%= form_tag users_path, method: :get, class:"navbar-form navbar-left" do %>
-              <%= text_field_tag :search, params[:search], placeholder: "Search by name", class: "form-control" %>
-              <%= submit_tag "Search", class:"btn btn-default" %>
-            <% end %>
 
-              <!-- <li><%# link_to "Signed in as #{current_user.name.capitalize}", current_user %></li> -->
-              <li><%= link_to current_user do %><%= image_tag(current_user.image || "https://ssl.gstatic.com/accounts/ui/avatar_2x.png", width: '25', height: '25', class: 'img-rounded') %><% end %> </li>
-              <li><%= link_to "Log Out", logout_path, method: :delete, class:"btn btn-outline-default" %></li>
-            <% end %>
-          </ul>
+                <!-- <li><%# link_to "Signed in as #{current_user.name.capitalize}", current_user %></li> -->
+                <li><%= link_to current_user do %><%= image_tag(current_user.image || "https://ssl.gstatic.com/accounts/ui/avatar_2x.png", width: '25', height: '25', class: 'img-rounded') %><% end %> </li>
+                <li><%= link_to "Log Out", logout_path, method: :delete, class:"btn btn-outline-default" %></li>
+              <% end %>
+            </ul>
+          </div>
           <!-- Right Nav End -->
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
