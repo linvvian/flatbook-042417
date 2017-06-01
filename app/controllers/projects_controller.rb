@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
   before_action :logged_in
   before_action :logged_member, only: [:edit, :update, :destroy]
+  helper_method :project_member
+
   def index
     @projects = Project.all
   end

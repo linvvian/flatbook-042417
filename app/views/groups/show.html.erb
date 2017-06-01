@@ -3,8 +3,10 @@
   <p><%= @group.description %></p>
 
   <div class="btn-gorup pull-right">
-    <%= link_to "Edit Group", edit_group_path, class:"btn btn-warning" %>
-    <%= link_to "Delete Group", group_path, method: :delete, data: { confirm: "Are you sure?"}, class:"btn btn-danger" %><br><br>
+    <% if is_creator? || is_admin? %>
+      <%= link_to "Edit Group", edit_group_path, class:"btn btn-warning" %>
+      <%= link_to "Delete Group", group_path, method: :delete, data: { confirm: "Are you sure?"}, class:"btn btn-danger" %><br><br>
+    <% end %>
   </div>
 
   <%= link_to "Back", groups_path, class:"btn btn-primary" %>
