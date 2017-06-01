@@ -46,7 +46,11 @@
                 <% end %>
               </div>
             <% else %>
-              <li><%= link_to "Search", users_path %></li>
+            <%= form_tag users_path, method: :get, class:"navbar-form navbar-left" do %>
+              <%= text_field_tag :search, params[:search], placeholder: "Search by name", class: "form-control" %>
+              <%= submit_tag "Search", class:"btn btn-default" %>
+            <% end %>
+
               <li><%= link_to "Signed in as #{current_user.name.capitalize}", current_user %></li>
               <li><%= link_to "Log Out", logout_path, method: :delete, class:"btn btn-outline-default" %></li>
             <% end %>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :projects
   resources :cohorts
   resources :friendships, only: [:create, :destroy]
+
   get '/friends' => 'friendships#show', as: 'show_friends'
 
   post '/groups/:id/join' => 'groups_users#join_group', as: 'join_group'

@@ -1,14 +1,11 @@
 <div class="well" style="padding: 30px">
-  <%= form_tag users_path, method: :get do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search by name", class: "form-control" %>
-    <%= submit_tag "Search", class:"btn btn-primary" %>
-  <% end %>
+  <h1>Results</h1>
   <br>
   <div class="list-group">
     <% if @users.present? %>
       <%= render 'users' %>
     <% elsif params[:search] %>
-      <p>There are no users containing [ <%= params[:search] %> ].</p>
+      <h4>There are no users containing [ <%= params[:search] %> ].</h4>
     <% end %>
   </div>
 </div>
