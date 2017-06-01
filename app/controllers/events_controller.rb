@@ -52,7 +52,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :date, :description, :creator_id)
+    params.require(:event).permit(:name, :date, :description, :creator_id, :time)
   end
 
   def is_creator?

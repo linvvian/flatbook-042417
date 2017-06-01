@@ -13,4 +13,12 @@ class Event < ApplicationRecord
     self.users.reject {|user| user == self.creator}
   end
 
+  def pretty_date
+    self.date.strftime("%B %e, %Y")
+  end
+
+  def pretty_time
+    self.time.strftime("%l:%M %p")
+  end
+
 end
