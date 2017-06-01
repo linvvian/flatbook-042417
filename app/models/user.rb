@@ -24,7 +24,12 @@ class User < ApplicationRecord
     create(
       provider: auth['provider'],
       uid: auth['uid'],
-      name: auth['info']['name']
+      name: auth['info']['name'] || "NA",
+      email: auth['info']['email'] || "NA",
+      password: hash.to_s,
+      github: auth['info']['github']|| "github.com",
+      cohort_id: 2,
+      image: auth['info']['image']
     )
   end
 
