@@ -41,6 +41,44 @@
   <% end %>
 </div>
 
-<div style="margin-top: 20px">
-  <%= render "comments/show" %>
+<br>
+
+<div>
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#comments" data-toggle="tab" aria-expanded="true">Comments</a></li>
+    <li class=""><a href="#project" data-toggle="tab" aria-expanded="false">Projects</a></li>
+    <li class=""><a href="#group" data-toggle="tab" aria-expanded="false">Groups</a></li>
+    <li class=""><a href="#event" data-toggle="tab" aria-expanded="false">Events</a></li>
+  </ul>
+  <div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade active in" id="comments">
+      <div style="margin-top: 20px">
+        <%= render "comments/show" %>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="project">
+        <% current_user.projects.each do |project| %>
+        <div class="list-group">
+          <h1><%= link_to "#{project.name}", project_path(project), class:"list-group-item" %></h1>
+            <p class="list-group-item-text"> <%= project.description %> </p>
+        </div>
+        <% end %>
+    </div>
+    <div class="tab-pane fade" id="group">
+      <% current_user.groups.each do |group| %>
+      <div class="list-group">
+        <h1><%= link_to "#{group.name}", group_path(group), class:"list-group-item" %></h1>
+          <p class="list-group-item-text"> <%= group.description %> </p>
+      </div>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="event">
+      <% current_user.events.each do |event| %>
+      <div class="list-group">
+        <h1><%= link_to "#{event.name}", event_path(event), class:"list-group-item" %></h1>
+          <p class="list-group-item-text"> <%= event.description %> </p>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>
