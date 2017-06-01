@@ -9,7 +9,7 @@
   <% end %>
   <% @events.each do |e| %>
     <div class="list-group">
-      <h1><%= link_to "#{e.name}", event_path(e), class:"list-group-item" %></h1>
+      <h1><%= link_to "#{e.name.capitalize} --- On: #{e.date}", event_path(e), class:"list-group-item" %></h1>
         <p class="list-group-item-text"> <%= e.description %> </p>
       </a>
     </div>

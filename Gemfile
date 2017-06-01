@@ -57,6 +57,9 @@ gem "bootstrap-sass", "~> 3.1.1"
 # Nested comments
 # gem 'closure_tree'
 
+# Google Maps
+gem 'gmaps4rails'
+
 # OmniAuth
 gem 'omniauth'
 gem 'omniauth-google'
