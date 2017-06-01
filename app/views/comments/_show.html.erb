@@ -15,11 +15,18 @@
           <div class="panel-heading">
             <strong><%= link_to comment.author.name, user_path(comment.author_id) %></strong> <span class="text-muted">posted on <%= comment.time %></span>
 
+            <span id="like" style="margin-left:20px">
+            <%= link_to "#{params[:id]}/like?comment_id=#{comment.id}&page_type=#{page.class}&page_id=#{page.id}", method: "post" do %><span class="glyphicon glyphicon-thumbs-up"></span><% end %>
+            +<%= comment.likes %>
+            &nbsp; &nbsp;
+            <%= link_to "#{params[:id]}/dislike?comment_id=#{comment.id}&page_type=#{page.class}&page_id=#{page.id}", method: "post" do %><span class="glyphicon glyphicon-thumbs-down"></span><% end %>
+            -<%= comment.dislikes %>
+            </span>
+
             <% if current_user == comment.author || is_admin? %>
 
             <span class="pull-right">
               <%= link_to "Delete", "#{params[:id]}/delete_comment?comment_id=#{comment.id}&page_type=#{page.class}&page_id=#{page.id}", method: "delete", data: { confirm: "Are you sure?"}%></span>
-
             <% end %>
 
           </div>

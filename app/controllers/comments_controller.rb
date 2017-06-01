@@ -14,6 +14,20 @@ class CommentsController < ApplicationController
     redirect_from_params
   end
 
+  def like_comment
+    comment = Comment.find(params['comment_id'])
+    liked = comment.likes + 1
+    comment.update(likes: liked)
+    redirect_from_params
+  end
+
+  def dislike_comment
+    comment = Comment.find(params['comment_id'])
+    disliked = comment.dislikes + 1
+    comment.update(dislikes: disliked)
+    redirect_from_params
+  end
+
   private
 
   def comment_params
