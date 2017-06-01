@@ -9,6 +9,6 @@ class Group < ApplicationRecord
   end
 
   def members
-    self.users.reject {|user| user == g.creator}
+    self.users.reject {|user| user == self.creator}
   end
 end
