@@ -22,8 +22,8 @@
   <h3>Members</h3>
   <ul>
     <li><%= link_to @group.creator.name, user_path(@group.creator) %> (creator)</li>
-    <% @group.users.each do |user| %>
-      <li><%= link_to user.name, user_path(user) %></li>
+    <% @group.members.each do |member| %>
+      <li><%= link_to member.name, user_path(member) %></li>
     <% end %>
   </ul>
 </div>
