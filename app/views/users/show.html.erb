@@ -1,24 +1,35 @@
 <div class="panel-heading"><h2><%= is_self?(@user) ? "Your" : "#{@user.name}'s" %> Profile</h2></div>
-<div class="well" style="width: 60%;">
-  <table class="table table-striped">
-    <tr>
-      <td style="width: 30%;"><strong>Name: </strong></td>
-      <td><%= @user.name %></td>
-    </tr>
-    <tr>
-      <td><strong>Email: </strong></td>
-      <td><%= @user.email %></td>
-    </tr>
-    <tr>
-      <td><strong>Github Account: </strong></td>
-      <td><%= @user.github %></td>
-    </tr>
-    <tr>
-      <td><strong>Cohort Start Date: </strong></td>
-      <td><%= @user.cohort.start_date %></td>
-    </tr>
-  </table>
+
+<div class="row">
+  <div class="col-sm-2">
+    <div class="well">
+      <%= image_tag(@user.image || "https://ssl.gstatic.com/accounts/ui/avatar_2x.png", size: '100', class: 'img-responsive') %>
+    </div>
+  </div>
+  <div class="col-sm-10">
+    <div class="well">
+      <table class="table table-striped">
+        <tr>
+          <td style="width: 20%;"><strong>Name: </strong></td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td><strong>Email: </strong></td>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <td><strong>Github Account: </strong></td>
+          <td><%= @user.github %></td>
+        </tr>
+        <tr>
+          <td><strong>Cohort Start Date: </strong></td>
+          <td><%= @user.cohort.start_date %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>
+
 
 <div id="buttons" style="margin-left: 20px;">
   <% if is_self?(@user) %>
