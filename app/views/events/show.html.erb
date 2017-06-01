@@ -19,11 +19,11 @@
       <%= link_to "Join Event", join_event_path, method: :post, class:"btn btn-success" %>
     <% end %>
   </div>
-  <h3>Members</h3>
+  <h3>Attending</h3>
   <ul>
     <li><%= link_to @event.creator.name, user_path(@event.creator) %> (creator)</li>
-    <% @event.users.each do |user| %>
-      <li><%= link_to user.name, user_path(user) %></li>
+    <% @event.members.each do |member| %>
+      <li><%= link_to member.name, user_path(member) %></li>
     <% end %>
   </ul>
 </div>
