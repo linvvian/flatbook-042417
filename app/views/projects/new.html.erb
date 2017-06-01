@@ -2,23 +2,6 @@
   <h1>Create a New Project</h1>
 </div>
 
-<div class="well">
-  <%= form_for(@project) do |f| %>
-    <div class="form-group">
-    <%= f.label "Project Name: " %>
-    <%= f.text_field :name, class:"form-control" %>
-    <br>
-    <%= f.label "Project Description: " %>
-    <%= f.text_area :description, class:"form-control" %>
-    <br>
-    <%= f.label "Github Repo Name: " %>
-    <%= f.text_field :github, class:"form-control" %>
-    <br>
-    <%= f.label "Project Members: " %>
-    <br>
-    <%= f.collection_select :user_ids, @other_students, :id, :name, {:include_blank => false}, {:multiple => true, class: "form-control"} %>
-    <br><br>
-    <%= f.submit class:"btn btn-primary" %>
-    </div>
-  <% end %>
-</div>
+<%= render 'form', project: @project do |f| %>
+  <%= f.collection_select :user_ids, @other_students, :id, :name, {:include_blank => false}, {:multiple => true, class: "form-control"} %>
+<% end %>

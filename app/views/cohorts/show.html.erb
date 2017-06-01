@@ -8,6 +8,8 @@
       <li><%= link_to u.name, user_path(u), class: "list-group-item" %></li>
     <% end %>
     </ol>
-  <%= link_to "Edit", edit_cohort_path, class:"btn btn-warning" %>
-  <%= link_to "Delete", cohort_path(@cohort), method: :delete, class:"btn btn-danger" %>
+  <% if is_admin? %>
+    <%= link_to "Edit", edit_cohort_path, class:"btn btn-warning" %>
+    <%= link_to "Delete", cohort_path(@cohort), method: :delete, class:"btn btn-danger" %>
+  <% end %>
 </div>

@@ -28,7 +28,8 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
-    @other_students = current_user.cohort.users.where("id != #{current_user.id}")
+    @not_member = (current_user.cohort.users - @project.users) | (@project.users - current_user.cohort.users)
+    @other_members = @project.users.where.not(id: current_user)
   end
 
   def update

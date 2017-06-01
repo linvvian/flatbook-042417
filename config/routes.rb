@@ -40,5 +40,4 @@ Rails.application.routes.draw do
   post '/events/:id/dislike' => 'thumbs#dislike_comment'
   post '/groups/:id/dislike' => 'thumbs#dislike_comment'
 
-
 end

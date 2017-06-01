@@ -1,5 +1,6 @@
 class CohortsController < ApplicationController
   before_action :logged_in
+  before_action :is_admin?, only: [:new, :create, :destroy]
 
   def index
     @cohorts = Cohort.all
