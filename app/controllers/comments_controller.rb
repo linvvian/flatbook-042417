@@ -9,34 +9,24 @@ class CommentsController < ApplicationController
   end
 
   def delete_comment
-    comment = Comment.find(params['comment_id'])
+    find_comment
     comment.destroy
     redirect_from_params
   end
 
-  def like_comment
-    comment = Comment.find(params['comment_id'])
-    liked = comment.likes + 1
-    comment.update(likes: liked)
-    redirect_from_params
-  end
-
-  def dislike_comment
-    comment = Comment.find(params['comment_id'])
-    disliked = comment.dislikes + 1
-    comment.update(dislikes: disliked)
-    redirect_from_params
-  end
-
   private
+
+  def find_comment
+    comment = Comment.find(params['comment_id'])
+  end
 
   def comment_params
     params.require('comment').permit('content', 'author_id')
   end
 
   def logged_author
-    comment = Comment.find(params['comment_id'])
-    edirect_from_params unless current_user == comment.author || is_admin?
+    find_comment
+    redirect_from_params unless current_user == comment.author || is_admin?
   end
 
   def redirect_from_params

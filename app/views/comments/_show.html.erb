@@ -13,26 +13,53 @@
       <div class="col-sm-10">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <strong><%= link_to comment.author.name, user_path(comment.author_id) %></strong> <span class="text-muted">posted on <%= comment.time %></span>
+            <strong><%= link_to comment.author.name, user_path(comment.author_id) %></strong>
 
-            <span id="like" style="margin-left:20px">
-            <%= link_to "#{params[:id]}/like?comment_id=#{comment.id}&page_type=#{page.class}&page_id=#{page.id}", method: "post" do %><span class="glyphicon glyphicon-thumbs-up"></span><% end %>
+            <span id="like" class="pull-right">
+            <%= link_to "#{params[:id]}/like?comment_id=#{comment.id}&page_type=#{page.class}&page_id=#{page.id}", method: "post" do %>
+
+              <% if comment.thumb_up_users.include?(current_user) %>
+
+              <span class="glyphicon glyphicon-thumbs-up" style="text-shadow: 1px 1px 3px blue"></span>
+
+              <% else %>
+
+              <span class="glyphicon glyphicon-thumbs-up" ></span>
+
+              <% end %>
+
+            <% end %>
             +<%= comment.likes %>
             &nbsp; &nbsp;
-            <%= link_to "#{params[:id]}/dislike?comment_id=#{comment.id}&page_type=#{page.class}&page_id=#{page.id}", method: "post" do %><span class="glyphicon glyphicon-thumbs-down"></span><% end %>
-            -<%= comment.dislikes %>
+            <%= link_to "#{params[:id]}/dislike?comment_id=#{comment.id}&page_type=#{page.class}&page_id=#{page.id}", method: "post" do %>
+
+              <% if comment.thumb_down_users.include?(current_user) %>
+
+              <span class="glyphicon glyphicon-thumbs-down" style="text-shadow: 1px 1px 3px blue"></span>
+
+              <% else %>
+
+              <span class="glyphicon glyphicon-thumbs-down" ></span>
+
+              <% end %>
+
+            <% end %>
+            <%= comment.dislikes %>
             </span>
 
-            <% if current_user == comment.author || is_admin? %>
-
-            <span class="pull-right">
-              <%= link_to "Delete", "#{params[:id]}/delete_comment?comment_id=#{comment.id}&page_type=#{page.class}&page_id=#{page.id}", method: "delete", data: { confirm: "Are you sure?"}%></span>
-            <% end %>
-
           </div>
+
           <div class="panel-body">
             <%= comment.content %>
           </div><!-- /panel-body -->
+          <div class="panel-heading">
+            <span class="text-muted">Posted on <%= comment.time %></span>
+            <% if current_user == comment.author || is_admin? %>
+            <span class="pull-right">
+              <%= link_to "Delete", "#{params[:id]}/delete_comment?comment_id=#{comment.id}&page_type=#{page.class}&page_id=#{page.id}", method: "delete", data: { confirm: "Are you sure?"}%></span>
+            <% end %>
+          </div>
+
         </div><!-- /panel panel-default -->
       </div><!-- /col-sm-5 -->
     </div><!-- /row -->
