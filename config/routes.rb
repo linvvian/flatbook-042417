@@ -35,10 +35,10 @@ Rails.application.routes.draw do
   post '/events/:id/like' => 'comments#like_comment'
   post '/groups/:id/like' => 'comments#like_comment'
 
-  post '/projects/:id/like' => 'comments#dislike_comment'
-  post '/users/:id/like' => 'comments#dislike_comment'
-  post '/events/:id/like' => 'comments#dislike_comment'
-  post '/groups/:id/like' => 'comments#dislike_comment'
+  post '/projects/:id/dislike' => 'comments#dislike_comment'
+  post '/users/:id/dislike' => 'comments#dislike_comment'
+  post '/events/:id/dislike' => 'comments#dislike_comment'
+  post '/groups/:id/dislike' => 'comments#dislike_comment'
 
 
 end

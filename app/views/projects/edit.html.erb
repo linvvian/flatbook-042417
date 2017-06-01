@@ -1,18 +1,7 @@
-<h1>Edit Project: <%= @project.name %></h1>
+<div class="page-headers">
+  <h1>Edit Project: <%= @project.name %></h1>
+</div>
 
-<%= form_for(@project) do |f| %>
-  <%= f.label "Project Name: " %>
-  <%= f.text_field :name %>
-  <br>
-  <%= f.label "Project Description: " %>
-  <%= f.text_area :description %>
-  <br>
-  <%= f.label "Github Link: " %>
-  <%= f.text_field :github %>
-  <br>
-  <%= f.label "Project Members: " %>
-  <br>
-  <%= f.collection_select :user_ids, @other_students, :id, :name, {:include_blank => false}, {:multiple => true}  %>
-  <br>
-  <%= f.submit %>
+<%= render 'form', project: @project do |f| %>
+  <%= f.collection_select :user_ids, @other_students, :id, :name, {:include_blank => false}, {:multiple => true, class: "form-control"} %>
 <% end %>
