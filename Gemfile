@@ -60,5 +60,7 @@ gem "bootstrap-sass", "~> 3.1.1"
 # OmniAuth
 gem 'omniauth'
 gem 'omniauth-google'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-gplus', '~> 2.0'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
