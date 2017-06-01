@@ -22,8 +22,8 @@
           <td><%= link_to "#{@user.github}", "#{@user.github}" %></td>
         </tr>
         <tr>
-          <td><strong>Cohort Start Date: </strong></td>
-          <td><%= @user.cohort.start_date %></td>
+          <td><strong>Cohort: </strong></td>
+          <td><%= link_to @user.cohort.start_date, cohort_path(@user.cohort) %></td>
         </tr>
 
         <% if @user.admin %>
