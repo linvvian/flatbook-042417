@@ -6,7 +6,9 @@
     <div class="row">
       <div class="col-sm-1">
         <div class="thumbnail">
-          <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+
+          <%= link_to comment.author do %><%= image_tag(comment.author.image || "https://ssl.gstatic.com/accounts/ui/avatar_2x.png", class: 'img-responsive user-photo') %><% end %>
+
         </div><!-- /thumbnail -->
       </div><!-- /col-sm-1 -->
 
