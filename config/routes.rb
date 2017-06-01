@@ -30,15 +30,15 @@ Rails.application.routes.draw do
   delete '/events/:id/delete_comment' => 'comments#delete_comment'
   delete '/groups/:id/delete_comment' => 'comments#delete_comment'
 
-  post '/projects/:id/like' => 'comments#like_comment'
-  post '/users/:id/like' => 'comments#like_comment'
-  post '/events/:id/like' => 'comments#like_comment'
-  post '/groups/:id/like' => 'comments#like_comment'
+  post '/projects/:id/like' => 'thumbs#like_comment'
+  post '/users/:id/like' => 'thumbs#like_comment'
+  post '/events/:id/like' => 'thumbs#like_comment'
+  post '/groups/:id/like' => 'thumbs#like_comment'
 
-  post '/projects/:id/like' => 'comments#dislike_comment'
-  post '/users/:id/like' => 'comments#dislike_comment'
-  post '/events/:id/like' => 'comments#dislike_comment'
-  post '/groups/:id/like' => 'comments#dislike_comment'
+  post '/projects/:id/dislike' => 'thumbs#dislike_comment'
+  post '/users/:id/dislike' => 'thumbs#dislike_comment'
+  post '/events/:id/dislike' => 'thumbs#dislike_comment'
+  post '/groups/:id/dislike' => 'thumbs#dislike_comment'
 
 
 end
