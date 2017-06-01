@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :is_admin?, :page
+  helper_method :current_user, :is_admin?, :page, :is_self?
 
   def index
     @user = User.new
@@ -23,6 +23,10 @@ class ApplicationController < ActionController::Base
 
   def logged_admin
     redirect_to root_path unless is_admin?
+  end
+
+  def is_self?(user)
+    user == current_user
   end
 
   def page

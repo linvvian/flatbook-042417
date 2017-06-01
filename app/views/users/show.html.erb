@@ -1,11 +1,4 @@
-<% whose = "" %>
-<% if @user == current_user %>
-  <% whose = "Your" %>
-<% else %>
-  <% whose = "#{@user.name}'s" %>
-<% end %>
-
-<div class="panel-heading"><h2><%= whose %> Profile</h2></div>
+<div class="panel-heading"><h2><%= is_self?(@user) ? "Your" : "#{@user.name}'s" %> Profile</h2></div>
 <div class="well" style="width: 60%;">
   <table class="table table-striped">
     <tr>
@@ -28,7 +21,7 @@
 </div>
 
 <div id="buttons" style="margin-left: 20px;">
-  <% if @user == current_user %>
+  <% if is_self?(@user) %>
     <%= link_to "See Friends", show_friends_path, class:"btn btn-info" %> &nbsp;	&nbsp;
     <%= link_to "Edit", edit_user_path, class:"btn btn-primary" %>	&nbsp;	&nbsp;
   <% elsif !is_friend? %>
@@ -57,7 +50,7 @@
       </div>
     </div>
     <div class="tab-pane fade" id="project">
-        <% current_user.projects.each do |project| %>
+        <% @user.projects.each do |project| %>
         <div class="list-group">
           <h1><%= link_to "#{project.name}", project_path(project), class:"list-group-item" %></h1>
             <p class="list-group-item-text"> <%= project.description %> </p>
@@ -65,7 +58,7 @@
         <% end %>
     </div>
     <div class="tab-pane fade" id="group">
-      <% current_user.groups.each do |group| %>
+      <% @user.groups.each do |group| %>
       <div class="list-group">
         <h1><%= link_to "#{group.name}", group_path(group), class:"list-group-item" %></h1>
           <p class="list-group-item-text"> <%= group.description %> </p>
@@ -73,7 +66,7 @@
       <% end %>
     </div>
     <div class="tab-pane fade" id="event">
-      <% current_user.events.each do |event| %>
+      <% @user.events.each do |event| %>
       <div class="list-group">
         <h1><%= link_to "#{event.name}", event_path(event), class:"list-group-item" %></h1>
           <p class="list-group-item-text"> <%= event.description %> </p>
