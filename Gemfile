@@ -53,3 +53,9 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "bootstrap-sass", "~> 3.1.1"
+
+# OmniAuth
+gem 'omniauth'
+gem 'omniauth-google'
+gem 'omniauth-twitter'
+gem 'omniauth-github'

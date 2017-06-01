@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   delete '/events/:id/leave' => 'events_users#leave_event', as: 'leave_event'
 
   post '/login' => 'sessions#create'
+  get 'auth/:provider/callback', to: 'sessions#create'
   delete '/logout' => 'sessions#destroy'
 
   post '/projects/:id/add_comment' => 'comments#add_comment'
@@ -27,4 +28,6 @@ Rails.application.routes.draw do
   delete '/users/:id/delete_comment' => 'comments#delete_comment'
   delete '/events/:id/delete_comment' => 'comments#delete_comment'
   delete '/groups/:id/delete_comment' => 'comments#delete_comment'
+
+
 end

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Metamorphous" >
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -39,9 +40,9 @@
             <% if current_user == nil %>
               <div style="margin-top: 10px">
                 <%= form_tag login_path, method: :post do %>
-                 <%= text_field_tag :email, nil, placeholder: "email" %>
-                 <%= password_field_tag :password, nil, placeholder: "password" %>
-                 <%= submit_tag "Login", class:"btn btn-primary" %>
+                  <%= text_field_tag :email, nil, placeholder: "email" %>
+                  <%= password_field_tag :password, nil, placeholder: "password" %>
+                  <%= submit_tag "Login", class:"btn btn-primary" %>
                 <% end %>
               </div>
             <% else %>
@@ -59,7 +60,7 @@
 
     <% flash.each do |key, value| %>
       <div class="alert alert-dismissible alert-<%= key %>"><%= value %>
-      <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
       </div>
     <% end %>
     <div class="container">
