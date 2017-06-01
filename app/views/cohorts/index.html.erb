@@ -3,16 +3,13 @@
 </div>
 
 <div class="well">
-<% if is_admin? %>
-  <%= link_to "New Cohort", new_cohort_path, class:"btn btn-success" %>
-  <hr>
+  <% if is_admin? %>
+    <%= link_to "New Cohort", new_cohort_path, class:"btn btn-success" %>
+    <hr>
   <% end %>
   <% @cohorts.order(:start_date).each do |c| %>
     <div class="list-group">
-      <h1><%= link_to c.start_date, cohort_path(c), class:"list-group-item" %></h1>
-      <% if !c.nickname.blank? %>
-      <p class="list-group-item-text"><%= c.nickname %></p>
-      <% end %>
+      <h1><%= link_to "#{c.start_date}", cohort_path(c), class:"list-group-item" %></h1>
     </div>
   <% end %>
 </div>
