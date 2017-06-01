@@ -17,6 +17,7 @@ vivian = User.create(name: "Vivian", email: "vivi@ff.com", password: "vivi", git
 annee = User.create(name: "Annee", email: "annee@ff.com", password: "annee", github: "git.annee.com", cohort_id: 1, admin: true, image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqqHpLFTCdVotpZAoBLpYY4SWVN7r7VLVzJg-ElboXw82ZhXTSig")
 tony = User.create(name: "Tony", email: "tony@ff.com", password: "tony", github: "git.tony.com", cohort_id: 1, admin: true, image:"https://us.123rf.com/450wm/branche/branche1705/branche170500234/77410098-hipster-avatar-icon.jpg?ver=6")
 lindsey = User.create(name: "Lindsey", email: "lindsey@ff.com", password: "lindsey", github: "git.lindsey.com", cohort_id: 1, admin: true, image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStA-hsvYJvujgpsvfxsNMP8arZdtBt0tvJHNLx0JJ6uCC0MMvsKA")
+ash = User.create(name: "Ash", email: "ash@ff.com", password: "ash", github: "git.ash.com", cohort_id: 2, admin: true, image:"https://68.media.tumblr.com/b447980a26fbe7435e9c7807eb7d93c2/tumblr_nuxt616C8H1snc7jco1_250.png")
 
 # project = Project.new(name: "project 1")
 #
