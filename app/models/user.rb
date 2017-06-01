@@ -33,6 +33,34 @@ class User < ApplicationRecord
     )
   end
 
+  def remove_self
+    @projects = Project.all
+    @projects.each do |project|
+      if project.users.empty?
+        project.delete
+      else
+        project.users.delete(self)
+      end
+    end
+    @events = Event.all
+    @events.each do |event|
+      if event.creator == self
+        event.delete
+      else
+        event.users.delete(self)
+      end
+    end
+    @groups = Group.all
+    @groups.each do |group|
+      if group.creator == self
+        group.delete
+      else
+        group.users.delete(self)
+      end
+    end
+    Comment.all.where("author_id = #{self.id} OR user_id = #{self.id}").delete_all
+  end
+
   # def flatiron_email
   #   unless self.email && email.include?("flatironschool.com")
   #     self.errors.add(:email, "Must sign up with Flatiron School email")

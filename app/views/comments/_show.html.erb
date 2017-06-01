@@ -19,13 +19,9 @@
             <%= link_to "#{params[:id]}/like?comment_id=#{comment.id}&page_type=#{page.class}&page_id=#{page.id}", method: "post" do %>
 
               <% if comment.thumb_up_users.include?(current_user) %>
-
-              <span class="glyphicon glyphicon-thumbs-up" style="text-shadow: 1px 1px 3px blue"></span>
-
+                <span class="glyphicon glyphicon-thumbs-up" style="text-shadow: 1px 1px 3px blue"></span>
               <% else %>
-
-              <span class="glyphicon glyphicon-thumbs-up" ></span>
-
+                <span class="glyphicon glyphicon-thumbs-up" ></span>
               <% end %>
 
             <% end %>
@@ -34,17 +30,13 @@
             <%= link_to "#{params[:id]}/dislike?comment_id=#{comment.id}&page_type=#{page.class}&page_id=#{page.id}", method: "post" do %>
 
               <% if comment.thumb_down_users.include?(current_user) %>
-
-              <span class="glyphicon glyphicon-thumbs-down" style="text-shadow: 1px 1px 3px blue"></span>
-
+                <span class="glyphicon glyphicon-thumbs-down" style="text-shadow: 1px 1px 3px blue"></span>
               <% else %>
-
-              <span class="glyphicon glyphicon-thumbs-down" ></span>
-
+                <span class="glyphicon glyphicon-thumbs-down" ></span>
               <% end %>
 
             <% end %>
-            <%= comment.dislikes %>
+            -<%= comment.dislikes %>
             </span>
 
           </div>
