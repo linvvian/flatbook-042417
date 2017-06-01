@@ -1,9 +1,9 @@
 <div>
   <% if current_user %>
     <div class="jumbotron" align="center">
-      <h1>Welcome <%= current_user.name.capitalize %>!</h1>
+      <h1 style="font-family: 'Metamorphous', cursive;">Welcome <%= current_user.name.capitalize %>!</h1>
       <p>...</p>
-      <p><%= link_to "Learn more", current_user, class: "btn btn-primary btn-lg" %></p>
+      <p><%= link_to "View Profile", current_user, class: "btn btn-primary btn-lg" %></p>
     </div>
   <% else %>
     <div class="signup">
@@ -13,7 +13,7 @@
         <%= f.collection_select(:cohort_id, @cohorts, :id, :start_date, prompt: true) %><br>
       <% end %>
       <h1>Or login with: </h1>
-      <%= link_to 'auth/twitter' do %><%= image_tag('https://1.bp.blogspot.com/-kbviOAaq2ds/T-n4PulsfwI/AAAAAAAADpo/YvXmzmRloLw/s1600/twitter-twitter-icon.png', width: '100', height: '100', class: 'img-rounded') %><% end %>
+      <%= link_to 'auth/twitter' do %><%= image_tag('http://icons.iconarchive.com/icons/limav/flat-gradient-social/256/Twitter-icon.png', width: '100', height: '100', class: 'img-rounded') %><% end %>
       <%= link_to 'auth/github' do %><%= image_tag('http://www.freeiconspng.com/uploads/github-icon-1.png', width: '100', height: '100', class: 'img-rounded') %><% end %>
       <!-- <%# link_to 'auth/google' do %><%# image_tag('http://www.europeansaway.com/images/google-plus-logo.png', width: '100', height: '100', class: 'img-rounded') %><%# end %> -->
     </div>
