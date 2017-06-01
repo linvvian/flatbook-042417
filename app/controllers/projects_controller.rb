@@ -60,6 +60,6 @@ class ProjectsController < ApplicationController
   end
 
   def logged_member
-    redirect_to projects_path unless project_member
+    redirect_to projects_path unless project_member || is_admin?
   end
 end

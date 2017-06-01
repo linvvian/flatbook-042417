@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   before_action :logged_in
   before_action :find_group, except: [:index, :new, :create]
+  before_action :logged_creator, only: [:edit, :update, :destroy]
   helper_method :is_member?, :is_creator?
 
   def index
@@ -57,5 +58,9 @@ class GroupsController < ApplicationController
 
   def is_creator?
     @group.creator == current_user
+  end
+
+  def logged_creator
+    redirect_to group_path(@group) unless is_creator? || is_admin?
   end
 end
