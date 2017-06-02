@@ -18,6 +18,7 @@ class EventsController < ApplicationController
     @event.creator_id = current_user.id
     @event.users << current_user
     if @event.save
+      @event.create_activity :create, owner: current_user
       redirect_to event_path(@event)
     else
       render :new
@@ -39,6 +40,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    @event.create_activity :destroy, owner: current_user
     @event.delete
     redirect_to events_path
   end

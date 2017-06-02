@@ -4,6 +4,7 @@ class FriendshipsController < ApplicationController
     @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
     @friendship.status = "pending"
     if @friendship.save
+      @friendship.create_activity :create, owner: current_user
       flash[:success] = "Sent request"
       friend = User.find(params[:friend_id])
       redirect_to friend

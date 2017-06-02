@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
     comment = Comment.new(comment_params)
     comment.send("#{params[:comment][:page_type].downcase}_id=", params[:comment][:page_id])
     if comment.save
+      comment.create_activity :create, owner: current_user
       flash[:success] = "Added comment"
     else
       flash[:warning] = "Something went wrong. Try again."
