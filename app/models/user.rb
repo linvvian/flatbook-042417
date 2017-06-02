@@ -7,12 +7,18 @@ class User < ApplicationRecord
   has_and_belongs_to_many :groups
   has_and_belongs_to_many :projects
   has_secure_password
-  validates :name, presence: true
+  validates :first_name, :last_name, presence: true
+  validates :email, uniqueness: true
   # validate :flatiron_email
+
+  def name
+    full = "#{self.first_name} #{self.last_name}"
+    full.titleize
+  end
 
   def self.search(search)
     if search
-      where("lower(name) LIKE ?", "%#{search}%")
+      where("lower(first_name) LIKE ?", "%#{search}%") || where("lower(last_name) LIKE ?", "%#{search}%")
     end
   end
 
@@ -24,7 +30,7 @@ class User < ApplicationRecord
     create(
       provider: auth['provider'],
       uid: auth['uid'],
-      name: auth['info']['name'] || "NA",
+      first_name: auth['info']['name'] || "NA",
       email: auth['info']['email'] || "NA",
       password: hash.to_s,
       github: auth['info']['github']|| "github.com",
@@ -107,6 +113,7 @@ class User < ApplicationRecord
       end
     end
     Friendship.all.where("friend_id = #{self.id} OR user_id = #{self.id}").delete_all
+    Thumb.all.where("user_id = #{self.id}").delete_all
     Comment.all.where("author_id = #{self.id} OR user_id = #{self.id}").delete_all
   end
 
