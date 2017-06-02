@@ -7,7 +7,7 @@
     </div>
 
     <div class="well" style="width:40%">
-      <h3>Activity Feed</h3>
+      <h1>Activity Feed</h1>
         <% @activities.each do |activity| %>
           <div class="activities">
             <%= link_to activity.owner.name, activity.owner if activity.owner %>
