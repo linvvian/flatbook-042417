@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :is_admin?, :page, :is_self?
+  helper_method :current_user, :is_admin?, :page, :is_self?, :find_friendship
 
   def index
     @user = User.new
@@ -50,6 +50,10 @@ class ApplicationController < ActionController::Base
     when "groups"
       Group.find(params[:id])
     end
+  end
+
+  def find_friendship(user_id, friend_id)
+    Friendship.find_by(user_id: user_id, friend_id: friend_id) || Friendship.find_by(user_id: friend_id, friend_id: user_id)
   end
 
 end

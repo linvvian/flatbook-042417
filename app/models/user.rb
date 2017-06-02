@@ -32,6 +32,55 @@ class User < ApplicationRecord
     )
   end
 
+  def friends(user_id)
+    all_possible_friendships
+  end
+
+  def my_friends
+    my_friends = []
+    all_possible_friendships.compact.each do |friendship|
+      if friendship.status == "friend"
+        my_friends << friend_not_self(friendship)
+      end
+    end
+    my_friends
+  end
+
+  def my_pending_friends
+    pending = []
+    all_possible_friendships.compact.each do |friendship|
+      if friendship.status == "pending" && friendship.user_id != self.id
+        pending << friend_not_self(friendship)
+      end
+    end
+    pending
+  end
+
+  def my_outgoing_friend_pends
+    outgoing = []
+    all_possible_friendships.compact.each do |friendship|
+      if friendship.status == "pending" && friendship.user_id == self.id
+        outgoing << friend_not_self(friendship)
+      end
+    end
+    outgoing
+  end
+
+  def all_possible_friendships
+    @friendships = Friendship.all
+    @friendships.map do |friendship|
+      friendship if friendship.user_id == self.id || friendship.friend_id == self.id
+    end
+  end
+
+  def friend_not_self(friendship)
+    if User.find(friendship.user_id) != self
+      User.find(friendship.user_id)
+    else
+      User.find(friendship.friend_id)
+    end
+  end
+
   def remove_self
     @projects = Project.all
     @projects.each do |project|
