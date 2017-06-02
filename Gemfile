@@ -57,6 +57,9 @@ gem "bootstrap-sass", "~> 3.1.1"
 # Nested comments
 # gem 'closure_tree'
 
+# Activity feed
+gem 'public_activity'
+
 # Google Maps
 gem 'gmaps4rails'
 

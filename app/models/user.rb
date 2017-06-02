@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  include PublicActivity::Model
+  tracked owner: ->(controller, model) { controller && controller.current_user }
+
   has_many :friendships
   has_many :friends, :through => :friendships
   belongs_to :cohort, optional: true
