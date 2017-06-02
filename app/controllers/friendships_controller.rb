@@ -3,6 +3,7 @@ class FriendshipsController < ApplicationController
   def create
     @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
     if @friendship.save
+      @friendship.create_activity :create, owner: current_user
       flash[:success] = "Sent request"
       @friendship.update(status: "pending")
       friend = User.find(params[:friend_id])
@@ -20,7 +21,7 @@ class FriendshipsController < ApplicationController
   end
 
   def show
-    
+
   end
 
   # confirm friendship

@@ -14,11 +14,11 @@ class GroupsController < ApplicationController
   end
 
   def create
-    byebug
     @group = Group.new(group_params)
     @group.creator_id = current_user.id
     @group.users << current_user
     if @group.save
+      @group.create_activity :create, owner: current_user
       redirect_to group_path(@group)
     else
       render :new
@@ -40,6 +40,7 @@ class GroupsController < ApplicationController
   end
 
   def destroy
+    @group.create_activity :destroy, owner: current_user
     @group.delete
     redirect_to groups_path
   end

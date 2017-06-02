@@ -2,10 +2,10 @@ class CommentsController < ApplicationController
   before_action :logged_author, only: :delete_comments
 
   def create
-    byebug
     comment = Comment.new(comment_params)
     comment.send("#{params[:comment][:page_type].downcase}_id=", params[:comment][:page_id])
     if comment.save
+      comment.create_activity :create, owner: current_user
       flash[:success] = "Added comment"
     else
       flash[:warning] = "Something went wrong. Try again."
