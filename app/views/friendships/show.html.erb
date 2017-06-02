@@ -7,30 +7,30 @@
 <div id="myTabContent" class="tab-content">
   <div class="tab-pane fade active in" id="friends">
     <table class="table table-striped">
-      <% current_user.my_friends.each do |friend_id| %>
+      <% current_user.my_friends.each do |friend| %>
         <tr>
-          <td><%= link_to User.find(friend_id).name, user_path(friend_id) %></td>
+          <td><%= link_to friend.name, user_path(friend) %></td>
         </tr>
       <% end %>
     </table>
   </div>
   <div class="tab-pane fade" id="pending">
     <table class="table table-striped">
-    <% current_user.my_pending_friends.each do |friend_id| %>
+    <% current_user.my_pending_friends.each do |friend| %>
       <tr>
-        <td><%= link_to User.find(friend_id).name, user_path(friend_id) %></td>
-        <td><%= link_to "Confirm Request", friendship_path(Friendship.find_by(user_id: friend_id, friend_id: current_user.id)), method: :patch %></td>
-        <td><%= link_to "Delete Request", friendship_path(Friendship.find_by(user_id: friend_id, friend_id: current_user.id)), method: :delete %></td>
+        <td><%= link_to friend.name, user_path(friend) %></td>
+        <td><%= link_to "Confirm Request", friendship_path(find_friendship(friend, current_user.id)), method: :patch %></td>
+        <td><%= link_to "Delete Request", friendship_path(find_friendship(friend, current_user.id)), method: :delete %></td>
       </tr>
     <% end %>
     </table>
   </div>
   <div class="tab-pane fade" id="outgoing">
     <table class="table table-striped">
-    <% current_user.my_outgoing_friend_pends.each do |friend_id| %>
+    <% current_user.my_outgoing_friend_pends.each do |friend| %>
       <tr>
-        <td><%= link_to User.find(friend_id).name, user_path(friend_id) %></td>
-        <td><%= link_to "Delete Request", friendship_path(Friendship.find_by(user_id: current_user.id, friend_id: friend_id)), method: :delete %></td>
+        <td><%= link_to friend.name, user_path(friend) %></td>
+        <td><%= link_to "Delete Request", friendship_path(find_friendship(friend, current_user.id)), method: :delete %></td>
       </tr>
     <% end %>
     </table>

@@ -82,30 +82,31 @@ class User < ApplicationRecord
   end
 
   def remove_self
-    @projects = Project.all
-    @projects.each do |project|
+    projects = Project.all
+    projects.each do |project|
       if project.users.empty?
         project.delete
       else
         project.users.delete(self)
       end
     end
-    @events = Event.all
-    @events.each do |event|
+    events = Event.all
+    events.each do |event|
       if event.creator == self
         event.delete
       else
         event.users.delete(self)
       end
     end
-    @groups = Group.all
-    @groups.each do |group|
+    groups = Group.all
+    groups.each do |group|
       if group.creator == self
         group.delete
       else
         group.users.delete(self)
       end
     end
+    Friendship.all.where("friend_id = #{self.id} OR user_id = #{self.id}").delete_all
     Comment.all.where("author_id = #{self.id} OR user_id = #{self.id}").delete_all
   end
 

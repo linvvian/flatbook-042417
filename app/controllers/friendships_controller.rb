@@ -20,7 +20,7 @@ class FriendshipsController < ApplicationController
   end
 
   def show
-
+    
   end
 
   # confirm friendship
