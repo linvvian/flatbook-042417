@@ -20,6 +20,7 @@ class ProjectsController < ApplicationController
       project.users << current_user
       redirect_to project_path(project)
     else
+      flash[:warning] = "Missing fields"
       redirect_to new_project_path
     end
   end
