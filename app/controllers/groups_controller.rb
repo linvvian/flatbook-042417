@@ -14,7 +14,6 @@ class GroupsController < ApplicationController
   end
 
   def create
-    byebug
     @group = Group.new(group_params)
     @group.creator_id = current_user.id
     @group.users << current_user
