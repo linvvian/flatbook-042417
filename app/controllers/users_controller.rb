@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   def create
     @cohorts = Cohort.all
     @user = User.new(user_params(:first_name, :last_name, :email, :password, :password_confirmation, :cohort_id))
+    @user.image = "https://ssl.gstatic.com/accounts/ui/avatar_2x.png"
     if @user.save
       session[:user_id] = @user.id
       session[:expires_at] = Time.current + 6.hours
@@ -46,9 +47,6 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params(:first_name, :last_name, :email, :password, :password_confirmation, :github, :admin, :cohort_id))
-      if params[:image].blank? == false
-        @user.update(image: params[:image])
-      end
       redirect_to @user
     else
       flash.now[:warning] = "Invalid"

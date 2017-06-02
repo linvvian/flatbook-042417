@@ -3,10 +3,22 @@
   padding: 20px;
 }
 
+#friend_table #picture_col {
+  width: inherit;
+  vertical-align: middle;
+}
+
 #friend_table #name_col {
   width: 80%;
+  vertical-align: middle;
+}
+
+#friend_table #friend_name_col {
+  width: 93%;
+  vertical-align: middle;
 }
 
 #friend_table #delete_col {
+  vertical-align: middle;
   text-align: right;
 }

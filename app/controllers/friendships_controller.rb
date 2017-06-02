@@ -2,14 +2,11 @@ class FriendshipsController < ApplicationController
 
   def create
     @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
+    @friendship.status = "pending"
     if @friendship.save
       flash[:success] = "Sent request"
-      @friendship.update(status: "pending")
       friend = User.find(params[:friend_id])
       redirect_to friend
-    else
-      flash[:warning] = "Unable to add friend"
-      redirect_to root_url
     end
   end
 
@@ -20,7 +17,7 @@ class FriendshipsController < ApplicationController
   end
 
   def show
-    
+
   end
 
   # confirm friendship
