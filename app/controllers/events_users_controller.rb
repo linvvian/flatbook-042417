@@ -1,4 +1,4 @@
-class EventsUsersController < GroupsController
+class EventsUsersController < EventsController
 
   def join_event
     @event = Event.find(params[:id])

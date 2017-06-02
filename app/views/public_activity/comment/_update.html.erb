@@ -1,8 +1,0 @@
-update comment
-
-<% if activity.trackable %>
-  <% @type = activity.trackable.event || activity.trackable.group || activity.trackable.user || activity.trackable.project %>
-  <%= link_to @type.name, activity.trackable.event || activity.trackable.group || activity.trackable.user || activity.trackable.project %>
-<% else %>
-  which has been removed
-<% end %>
