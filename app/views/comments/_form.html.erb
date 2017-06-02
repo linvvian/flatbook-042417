@@ -5,17 +5,16 @@
         <strong>New Comment</strong>
       </div>
       <div class="panel-body">
-        <%= form_tag "#{params[:id]}/add_comment", method: "post" do %>
-          <%= hidden_field_tag :'[page_type]', page.class %>
-          <%= hidden_field_tag :'[page_id]', page.id %>
-          <%= hidden_field_tag :'[comment][author_id]', current_user.id %>
-          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <%= form_for(Comment.new) do |f| %>
+          <%= f.hidden_field :page_type, value: page.class %>
+          <%= f.hidden_field :page_id, value: page.id %>
+          <%= f.hidden_field :author_id, value: current_user.id %>
           <div class="row">
-            <div class="col-sm-9">
-              <%= text_area_tag :'[comment][content]', nil, style: "width: 100%" %>
+            <div class="col-sm-9" align="center">
+              <%= f.text_area :content, style: "width: 100%" %>
             </div>
-            <div class="col-sm-3">
-              <%= submit_tag "Add Comment",  class: "btn btn-success pull-right" %>
+            <div class="col-sm-3" align="center">
+              <%= f.submit "Add Comment", class: "btn btn-success" %>
             </div>
           </div>
         <% end %>

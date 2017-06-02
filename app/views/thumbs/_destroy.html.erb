@@ -1,0 +1,7 @@
+<%= form_for(@thumb, method: :delete, :html => {style: 'display: inline-block'}) do |f| %>
+  <%= f.hidden_field :page_type, value: page.class %>
+  <%= f.hidden_field :page_id, value: page.id %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :comment_id, value: @comment.id %>
+  <%= yield f %>
+<% end %>

@@ -1,26 +1,34 @@
-class ThumbsController < CommentsController
+class ThumbsController < ApplicationController
   before_action :logged_author, only: :delete_comments
 
-  def like_comment
-    comment = find_comment
-    if comment.thumb_up_users.include?(current_user)
-      thumb = Thumb.find_by(user_id: current_user.id, comment_id: comment.id, like: true)
-      thumb.destroy
-    else
-      Thumb.create(user: current_user, comment: comment, like: true)
-    end
+  def create
+    thumb = Thumb.create(thumb_params)
     redirect_from_params
   end
 
-  def dislike_comment
-    comment = find_comment
-    if comment.thumb_down_users.include?(current_user)
-      thumb = Thumb.find_by(user_id: current_user.id, comment_id: comment.id, like: false)
-      thumb.destroy
-    else
-      Thumb.create(user: current_user, comment: comment, like: false)
-    end
+  def destroy
+    thumb = Thumb.find(params[:id])
+    thumb.destroy
     redirect_from_params
+  end
+
+  private
+
+  def thumb_params
+    params.require(:thumb).permit(:user_id, :comment_id, :like)
+  end
+
+  def redirect_from_params
+    case params[:thumb][:page_type]
+    when "Project"
+      redirect_to project_path(params[:thumb][:page_id])
+    when "User"
+      redirect_to user_path(params[:thumb][:page_id])
+    when "Event"
+      redirect_to event_path(params[:thumb][:page_id])
+    when "Group"
+      redirect_to group_path(params[:thumb][:page_id])
+    end
   end
 
 end
