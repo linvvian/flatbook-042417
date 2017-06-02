@@ -1,8 +1,12 @@
 <div class="well">
   <h1><%= @event.name %></h1>
   <h2>Location: <%= @event.location %></h2>
-  <h3><%= @event.pretty_date %> at <%= @event.pretty_time %></h3>
-  <p><%= @event.description %></p>
+  <div class="well">
+    <h3>My Google Maps</h3>
+    <div id="map"></div>
+  </div>
+  <h3><strong>Date: </strong><%= @event.pretty_date %> at <%= @event.pretty_time %></h3>
+  <p><strong>Description: </strong><%= @event.description %></p>
 
 <% if is_creator? || is_admin? %>
   <div class="btn-gorup pull-right">
@@ -19,7 +23,6 @@
   <ul class="nav nav-tabs">
     <li class="active"><a href="#comments" data-toggle="tab" aria-expanded="true">Comments</a></li>
     <li class=""><a href="#attendees" data-toggle="tab" aria-expanded="false">Attendees</a></li>
-    <li class=""><a href="#maps" data-toggle="tab" aria-expanded="false">Map</a></li>
   </ul>
 
   <div id="myTabContent" class="tab-content">
@@ -47,25 +50,10 @@
         </ul>
       </div>
     </div>
-    <!-- Maps tab -->
-    <div class="tab-pane fade" id="maps">
-      <style>
-        #map {
-          width: 100%;
-          height: 500px;
-          background-color: grey;
-          overflow: visible;
-        }
-      </style>
-      <div class="well">
-        <h3>My Google Maps</h3>
-        <div id="map"></div>
-      </div>
-      <script>
-        initMap()
-      </script>
-    </div>
-    <!-- Map tab end -->
-
+    <!-- Attendies Tab ends -->
   </div>
 </div>
+
+
+
+<%= javascript_include_tag "events" %>
