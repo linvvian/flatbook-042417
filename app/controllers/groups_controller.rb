@@ -21,6 +21,7 @@ class GroupsController < ApplicationController
       @group.create_activity :create, owner: current_user
       redirect_to group_path(@group)
     else
+      flash[:warning] = "Missing fields"
       render :new
     end
   end
