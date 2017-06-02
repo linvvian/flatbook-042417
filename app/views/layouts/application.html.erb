@@ -58,7 +58,7 @@
                   <%= submit_tag "Search", class:"btn btn-search outline" %>
                 <% end %>
 
-                <!-- <li><%# link_to "Signed in as #{current_user.name.capitalize}", current_user %></li> -->
+                <!-- <li><%# link_to "Signed in as #{current_user.name}", current_user %></li> -->
                 <li><%= link_to current_user do %><%= image_tag(current_user.image || "https://ssl.gstatic.com/accounts/ui/avatar_2x.png", width: '25', height: '25', class: 'img-rounded') %><% end %> </li>
                 <li><%= link_to "Log Out", logout_path, method: :delete, class:"btn btn-outline-default" %></li>
               <% end %>
