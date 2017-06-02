@@ -4,7 +4,7 @@
     <%= f.label :github_account %>
     <%= f.text_field :github, class:"form-control"  %>
     <%= f.label :image_url %>
-    <%= f.text_field :image, class:"form-control" %>
+    <%= f.text_field :image, class:"form-control", placeholder: "Image url (optional)" %>
 
     <% if is_admin? %>
     <%= f.label :cohort_start_date %>

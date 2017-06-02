@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params(:first_name, :last_name, :email, :password, :password_confirmation, :github, :admin, :cohort_id))
+    if @user.update(user_params(:first_name, :last_name, :email, :password, :password_confirmation, :github, :admin, :cohort_id, :image))
       redirect_to @user
     else
       flash.now[:warning] = "Invalid"
