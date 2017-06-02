@@ -16,6 +16,7 @@ class ProjectsController < ApplicationController
   def create
     project = Project.new(project_params(:name, :description, :github, :user_ids => []))
     if project.save
+      project.create_activity :create, owner: current_user
       project.users << current_user
       redirect_to project_path(project)
     else
@@ -46,6 +47,7 @@ class ProjectsController < ApplicationController
 
   def destroy
     project = Project.find(params[:id])
+    project.create_activity :destroy, owner: current_user
     project.destroy
     redirect_to projects_path
   end

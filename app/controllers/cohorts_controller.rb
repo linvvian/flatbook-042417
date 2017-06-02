@@ -2,6 +2,7 @@ class CohortsController < ApplicationController
   before_action :logged_in
   before_action :is_admin?, only: [:new, :create, :destroy]
   before_action :timeout_session
+  before_action :find_cohort, only: [:show, :edit, :update, :destroy]
 
   def index
     @cohorts = Cohort.all
@@ -19,15 +20,12 @@ class CohortsController < ApplicationController
   end
 
   def show
-    @cohort = Cohort.find(params[:id])
   end
 
   def edit
-    @cohort = Cohort.find(params[:id])
   end
 
   def update
-    @cohort = Cohort.find(params[:id])
     if @cohort.update(cohort_params)
       redirect_to @cohort
     else
@@ -42,6 +40,11 @@ class CohortsController < ApplicationController
   end
 
   private
+
+  def find_cohort
+    @cohort = Cohort.find(params[:id])
+  end
+
   def cohort_params
     params.require(:cohort).permit(:start_date, :nickname)
   end

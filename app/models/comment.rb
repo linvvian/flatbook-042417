@@ -1,6 +1,6 @@
 class Comment < ApplicationRecord
-  include PublicActivity::Model
-  tracked owner: ->(controller, model) { controller && controller.current_user }
+  include PublicActivity::Common
+  # tracked except: :update, owner: ->(controller, model) { controller && controller.current_user }
 
   belongs_to :project, optional: true
   belongs_to :event, optional: true
