@@ -1,1 +1,5 @@
-joined Flatbook!
+<% if activity.trackable%>
+  <%= link_to activity.trackable.name, activity.trackable %> joined Flatbook!
+<% else %>
+  Someone left Flatbook 
+<% end %>
