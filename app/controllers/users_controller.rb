@@ -18,7 +18,6 @@ class UsersController < ApplicationController
   def create
     @cohorts = Cohort.all
     @user = User.new(user_params(:first_name, :last_name, :email, :password, :password_confirmation, :cohort_id))
-    @user.image = "https://ssl.gstatic.com/accounts/ui/avatar_2x.png"
     if @user.save
       @user.create_activity :create, owner: current_user
       session[:user_id] = @user.id

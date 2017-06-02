@@ -10,7 +10,7 @@
     <table class="table table-striped" id="friend_table">
       <% current_user.my_friends.each do |friend| %>
         <tr>
-          <td id="picture_col"><%= link_to user_path(friend) do %><% image_tag("#{friend.image}", size: '40', class: 'img-responsive') %><% end %></td>
+          <td id="picture_col"><%= link_to user_path(friend) do %><% image_tag("#{friend.icon}", size: '40', class: 'img-responsive') %><% end %></td>
           <td id="friend_name_col"><%= link_to friend.name, user_path(friend) %></td>
         </tr>
       <% end %>
@@ -20,7 +20,7 @@
     <table class="table table-striped" id="friend_table">
     <% current_user.my_pending_friends.each do |friend| %>
       <tr>
-        <td id="picture_col"><%= link_to user_path(friend) do %><% image_tag("#{friend.image}", size: '40', class: 'img-responsive') %><% end %></td>
+        <td id="picture_col"><%= link_to user_path(friend) do %><% image_tag("#{friend.icon}", size: '40', class: 'img-responsive') %><% end %></td>
         <td id="name_col"><%= link_to friend.name, user_path(friend) %></td>
         <td><%= link_to "Confirm Request", friendship_path(find_friendship(friend, current_user.id)), method: :patch, class: "btn btn-success btn-sm" %></td>
         <td><%= link_to "Delete Request", friendship_path(find_friendship(friend, current_user.id)), method: :delete, class: "btn btn-default btn-sm" %></td>
@@ -32,7 +32,7 @@
     <table class="table table-striped" id="friend_table">
     <% current_user.my_outgoing_friend_pends.each do |friend| %>
       <tr>
-        <td id="picture_col"><%= link_to user_path(friend) do %><% image_tag("#{friend.image}", size: '40', class: 'img-responsive') %><% end %></td>
+        <td id="picture_col"><%= link_to user_path(friend) do %><% image_tag("#{friend.icon}", size: '40', class: 'img-responsive') %><% end %></td>
         <td id="name_col"><%= link_to friend.name, user_path(friend) %></td>
         <td id="delete_col"><%= link_to "Delete Request", friendship_path(find_friendship(friend, current_user.id)), method: :delete, class: "btn btn-default btn-sm" %></td>
       </tr>
