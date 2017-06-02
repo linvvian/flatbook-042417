@@ -8,13 +8,9 @@
     <% end %>
   </div>
   <h1><%= @event.name %></h1>
+  <p><%= @event.description %></p>
   <h2>Location: <%= @event.location %></h2>
-  <div class="well">
-    <h3>My Google Maps</h3>
-    <div id="map"></div>
-  </div>
-  <h3><strong>Date: </strong><%= @event.pretty_date %> at <%= @event.pretty_time %></h3>
-  <p><strong>Description: </strong><%= @event.description %></p>
+  <h3><%= @event.pretty_date %> at <%= @event.pretty_time %></h3>
 
 <% if is_creator? || is_admin? %>
   <div class="btn-gorup pull-right">
@@ -54,7 +50,10 @@
     <!-- Attendies Tab ends -->
   </div>
 </div>
-
-
+<hr>
+<div class="well">
+  <h3>Maps</h3>
+  <div id="map"></div>
+</div>
 
 <%= javascript_include_tag "events" %>
