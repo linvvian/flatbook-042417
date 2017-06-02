@@ -18,6 +18,10 @@ class User < ApplicationRecord
     full.titleize
   end
 
+  def icon
+    self.image || "https://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+  end
+
   def self.search(search)
     if search
       where("lower(first_name) LIKE ?", "%#{search}%") || where("lower(last_name) LIKE ?", "%#{search}%")
