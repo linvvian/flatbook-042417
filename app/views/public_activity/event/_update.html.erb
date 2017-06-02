@@ -1,0 +1,7 @@
+update event
+
+<% if activity.trackable %>
+  on <%= link_to activity.trackable.name, activity.trackable.event %>
+<% else %>
+  which has been removed
+<% end %>

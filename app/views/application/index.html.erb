@@ -5,6 +5,16 @@
       <p>...</p>
       <p><%= link_to "View Profile", current_user, class: "btn btn-primary btn-lg" %></p>
     </div>
+
+    <div class="well">
+      <h3>Activity Feed</h3>
+        <% @activities.each do |activity| %>
+          <div class="activities">
+            <%= link_to activity.owner.name, activity.owner if activity.owner %>
+            <%= render_activity activity %>
+          </div>
+        <% end %>
+    </div>
   <% else %>
     <div class="signup">
       <h1>Sign Up</h1>

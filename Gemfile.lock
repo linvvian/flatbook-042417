@@ -124,6 +124,11 @@ GEM
       omniauth-oauth (~> 1.1)
       rack
     pg (0.20.0)
+    public_activity (1.5.0)
+      actionpack (>= 3.0.0)
+      activerecord (>= 3.0)
+      i18n (>= 0.5.0)
+      railties (>= 3.0.0)
     puma (3.8.2)
     rack (2.0.3)
     rack-test (0.6.3)
@@ -212,6 +217,7 @@ DEPENDENCIES
   omniauth-gplus (~> 2.0)
   omniauth-twitter
   pg (~> 0.18)
+  public_activity
   puma (~> 3.0)
   rails (~> 5.0.3)
   sass-rails (~> 5.0)

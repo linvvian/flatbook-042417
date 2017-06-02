@@ -1,4 +1,7 @@
 class Event < ApplicationRecord
+  include PublicActivity::Model
+  tracked owner: ->(controller, model) { controller && controller.current_user }
+
   has_and_belongs_to_many :users
   has_many :comments
   validates :name, presence: true
@@ -14,11 +17,11 @@ class Event < ApplicationRecord
   end
 
   def pretty_date
-    self.date.strftime("%B %e, %Y")
+    self.date.strftime("%B %e, %Y") if self.date
   end
 
   def pretty_time
-    self.time.strftime("%l:%M %p")
+    self.time.strftime("%l:%M %p") if self.time
   end
 
 end
