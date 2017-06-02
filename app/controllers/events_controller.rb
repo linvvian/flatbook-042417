@@ -21,6 +21,7 @@ class EventsController < ApplicationController
       @event.create_activity :create, owner: current_user
       redirect_to event_path(@event)
     else
+      flash[:warning] = "Missing fields"
       render :new
     end
   end
