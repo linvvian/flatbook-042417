@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :friendships
   has_many :friends, :through => :friendships
-  belongs_to :cohort
+  belongs_to :cohort, optional: true
   has_many :comments
   has_and_belongs_to_many :events
   has_and_belongs_to_many :groups
@@ -28,36 +28,85 @@ class User < ApplicationRecord
       email: auth['info']['email'] || "NA",
       password: hash.to_s,
       github: auth['info']['github']|| "github.com",
-      cohort_id: 2,
       image: auth['info']['image']
     )
   end
 
+  def friends(user_id)
+    all_possible_friendships
+  end
+
+  def my_friends
+    my_friends = []
+    all_possible_friendships.compact.each do |friendship|
+      if friendship.status == "friend"
+        my_friends << friend_not_self(friendship)
+      end
+    end
+    my_friends
+  end
+
+  def my_pending_friends
+    pending = []
+    all_possible_friendships.compact.each do |friendship|
+      if friendship.status == "pending" && friendship.user_id != self.id
+        pending << friend_not_self(friendship)
+      end
+    end
+    pending
+  end
+
+  def my_outgoing_friend_pends
+    outgoing = []
+    all_possible_friendships.compact.each do |friendship|
+      if friendship.status == "pending" && friendship.user_id == self.id
+        outgoing << friend_not_self(friendship)
+      end
+    end
+    outgoing
+  end
+
+  def all_possible_friendships
+    @friendships = Friendship.all
+    @friendships.map do |friendship|
+      friendship if friendship.user_id == self.id || friendship.friend_id == self.id
+    end
+  end
+
+  def friend_not_self(friendship)
+    if User.find(friendship.user_id) != self
+      User.find(friendship.user_id)
+    else
+      User.find(friendship.friend_id)
+    end
+  end
+
   def remove_self
-    @projects = Project.all
-    @projects.each do |project|
+    projects = Project.all
+    projects.each do |project|
       if project.users.empty?
         project.delete
       else
         project.users.delete(self)
       end
     end
-    @events = Event.all
-    @events.each do |event|
+    events = Event.all
+    events.each do |event|
       if event.creator == self
         event.delete
       else
         event.users.delete(self)
       end
     end
-    @groups = Group.all
-    @groups.each do |group|
+    groups = Group.all
+    groups.each do |group|
       if group.creator == self
         group.delete
       else
         group.users.delete(self)
       end
     end
+    Friendship.all.where("friend_id = #{self.id} OR user_id = #{self.id}").delete_all
     Comment.all.where("author_id = #{self.id} OR user_id = #{self.id}").delete_all
   end
 

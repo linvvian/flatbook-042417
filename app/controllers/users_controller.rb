@@ -39,12 +39,13 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @cohorts = Cohort.all
     @user = User.find(params[:id])
   end
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params(:name, :email, :password, :password_confirmation, :github, :admin))
+    if @user.update(user_params(:name, :email, :password, :password_confirmation, :github, :admin, :cohort_id))
       if params[:image].blank? == false
         @user.update(image: params[:image])
       end
@@ -61,7 +62,9 @@ class UsersController < ApplicationController
   end
 
   def is_friend?
-    friend = User.find(params[:id])
-    current_user.friends.include?(friend)
+    current_user.my_friends.each do |friend|
+      return true if friend.id == params[:id].to_i
+    end
+    return false
   end
 end

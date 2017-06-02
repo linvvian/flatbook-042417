@@ -7,6 +7,9 @@
     <%= f.text_field :image, class:"form-control" %>
 
     <% if is_admin? %>
+    <%= f.label :cohort_start_date %>
+    <%= f.collection_select(:cohort_id, @cohorts, :id, :start_date, prompt: true) %>
+    <br>
       <%= f.label :admin %>
       <%= f.check_box :admin  %>
     <% end %>

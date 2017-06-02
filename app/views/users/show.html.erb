@@ -18,20 +18,20 @@
           <td><%= @user.email %></td>
         </tr>
         <tr>
-          <td><strong>Github Account: </strong></td>
+          <td><strong>Github: </strong></td>
           <td><%= link_to "#{@user.github}", "#{@user.github}" %></td>
         </tr>
         <tr>
-          <td><strong>Cohort Start Date: </strong></td>
-          <td><%= @user.cohort.start_date %></td>
+          <td><strong>Cohort: </strong></td>
+          <td><%= link_to @user.cohort.start_date, cohort_path(@user.cohort) if @user.cohort%></td>
         </tr>
 
         <% if @user.admin %>
 
-        <tr>
-          <td><strong>Admin: </strong></td>
-          <td><%= @user.admin %></td>
-        </tr>
+          <tr>
+            <td><strong>Admin: </strong></td>
+            <td><%= @user.admin %></td>
+          </tr>
 
         <% end %>
       </table>
@@ -43,11 +43,13 @@
 <div id="buttons" style="margin-left: 20px;">
   <% if is_self?(@user) %>
     <%= link_to "See Friends", show_friends_path, class:"btn btn-info" %>
-  <% elsif !is_friend? %>
-    <%= link_to "Add Friend", friendships_path(:friend_id => @user), :method => :post, class:"btn btn-success" %>
+  <% elsif !is_friend? && !find_friendship(current_user.id, @user.id)%>
+    <%= link_to "Request to Add Friend", friendships_path(:friend_id => @user), :method => :post, class:"btn btn-success" %>
   <% elsif is_friend? %>
-    <%= link_to "Remove Friend", friendship_path(:friend_id => @user), :method => :delete, class:"btn btn-warning" %>
+    <% friendship = find_friendship(current_user.id, @user.id) %>
+    <%= link_to "Remove Friend", friendship_path(friendship), :method => :delete, class:"btn btn-warning" %>
   <% end %>
+
   <% if is_admin? && !is_self?(@user) %>
     &nbsp;	&nbsp; <%= link_to "Edit", edit_user_path, class:"btn btn-primary" %>
     &nbsp; &nbsp; <%= link_to "Delete", @user, method: :delete, class:"btn btn-danger" %>
