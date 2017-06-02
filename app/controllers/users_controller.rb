@@ -61,7 +61,9 @@ class UsersController < ApplicationController
   end
 
   def is_friend?
-    friend = User.find(params[:id])
-    current_user.friends.include?(friend)
+    current_user.my_friends.each do |friend|
+      return true if friend.id == params[:id].to_i
+    end
+    return false
   end
 end

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :events
   resources :projects
   resources :cohorts
-  resources :friendships, only: [:create, :destroy]
+  resources :friendships, only: [:create, :destroy, :update]
 
   get '/friends' => 'friendships#show', as: 'show_friends'
 
