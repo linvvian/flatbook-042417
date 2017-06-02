@@ -6,6 +6,16 @@
       <p><%= link_to "View Profile", current_user, class: "btn btn-primary btn-lg" %></p>
     </div>
 
+    <div class="bugs">
+      <p><strong>Currently working on the following bugs and features:</strong></p>
+      <p>Feel free to slack <strong>@asolace</strong> for anything</p>
+      <ul>
+        <li>Signing in with Google</li>
+        <li>Activity Feed</li>
+        <li>Email varification so we don't have crazy user creations</li>
+      </ul>
+    </div>
+
     <div class="well" style="width:40%">
       <h1>Activity Feed</h1>
         <% @activities.each do |activity| %>
