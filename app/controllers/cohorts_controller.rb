@@ -16,6 +16,9 @@ class CohortsController < ApplicationController
     @cohort = Cohort.new(cohort_params)
     if @cohort.save
       redirect_to cohorts_path
+    else
+      flash.now[:warning] = "Need start date"
+      render :new
     end
   end
 
