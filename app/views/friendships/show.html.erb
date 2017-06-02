@@ -1,13 +1,13 @@
 <h1>Your Friends</h1>
 <ul class="nav nav-tabs">
-  <li><a href="#friends" data-toggle="tab">Friends</a></li>
+  <li class="active"><a href="#friends" data-toggle="tab">Friends</a></li>
   <li><a href="#pending" data-toggle="tab">Pending</a></li>
   <li><a href="#outgoing" data-toggle="tab">Outgoing</a></li>
 </ul>
 <br>
 <div id="myTabContent" class="tab-content">
   <div class="tab-pane fade active in" id="friends">
-    <table class="table table-striped">
+    <table class="table table-striped" id="friend_table">
       <% current_user.my_friends.each do |friend| %>
         <tr>
           <td><%= link_to friend.name, user_path(friend) %></td>
@@ -16,22 +16,22 @@
     </table>
   </div>
   <div class="tab-pane fade" id="pending">
-    <table class="table table-striped">
+    <table class="table table-striped" id="friend_table">
     <% current_user.my_pending_friends.each do |friend| %>
       <tr>
-        <td><%= link_to friend.name, user_path(friend) %></td>
-        <td><%= link_to "Confirm Request", friendship_path(find_friendship(friend, current_user.id)), method: :patch %></td>
-        <td><%= link_to "Delete Request", friendship_path(find_friendship(friend, current_user.id)), method: :delete %></td>
+        <td id="name_col"><%= link_to friend.name, user_path(friend) %></td>
+        <td><%= link_to "Confirm Request", friendship_path(find_friendship(friend, current_user.id)), method: :patch, class: "btn btn-success btn-sm" %></td>
+        <td><%= link_to "Delete Request", friendship_path(find_friendship(friend, current_user.id)), method: :delete, class: "btn btn-default btn-sm" %></td>
       </tr>
     <% end %>
     </table>
   </div>
   <div class="tab-pane fade" id="outgoing">
-    <table class="table table-striped">
+    <table class="table table-striped" id="friend_table">
     <% current_user.my_outgoing_friend_pends.each do |friend| %>
       <tr>
-        <td><%= link_to friend.name, user_path(friend) %></td>
-        <td><%= link_to "Delete Request", friendship_path(find_friendship(friend, current_user.id)), method: :delete %></td>
+        <td id="name_col"><%= link_to friend.name, user_path(friend) %></td>
+        <td id="delete_col"><%= link_to "Delete Request", friendship_path(find_friendship(friend, current_user.id)), method: :delete, class: "btn btn-default btn-sm" %></td>
       </tr>
     <% end %>
     </table>

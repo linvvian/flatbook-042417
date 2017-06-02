@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :groups
   has_and_belongs_to_many :projects
   has_secure_password
-  validates :first_name, :last_name, presence: true
+  validates :first_name, presence: true
   # validate :flatiron_email
 
   def name

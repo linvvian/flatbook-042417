@@ -51,10 +51,10 @@
   <% end %>
 
   <% if is_admin? && !is_self?(@user) %>
-    &nbsp;	&nbsp; <%= link_to "Edit", edit_user_path, class:"btn btn-primary" %>
-    &nbsp; &nbsp; <%= link_to "Delete", @user, method: :delete, class:"btn btn-danger" %>
+    &nbsp;	&nbsp; <%= link_to "Edit Profile", edit_user_path, class:"btn btn-primary" %>
+    &nbsp; &nbsp; <%= link_to "Delete User", @user, method: :delete, class:"btn btn-danger" %>
   <% elsif is_self?(@user) %>
-    &nbsp;	&nbsp; <%= link_to "Edit", edit_user_path, class:"btn btn-primary" %>
+    &nbsp;	&nbsp; <%= link_to "Edit Profile", edit_user_path, class:"btn btn-primary" %>
   <% end %>
 </div>
 
@@ -74,26 +74,40 @@
       </div>
     </div>
     <div class="tab-pane fade" id="project">
-        <% @user.projects.each do |project| %>
-        <div class="list-group">
-          <h1><%= link_to "#{project.name}", project_path(project), class:"list-group-item" %></h1>
-            <p class="list-group-item-text"> <%= project.description %> </p>
+      <% if !@user.projects.empty? %>
+        <div class="well" style="margin-top: 20px">
+          <% @user.projects.each do |project| %>
+          <div class="list-group">
+            <h1><%= link_to "#{project.name}", project_path(project), class:"list-group-item" %></h1>
+              <p class="list-group-item-text"> <%= project.description %> </p>
+          </div>
+          <% end %>
         </div>
-        <% end %>
+      <% end %>
     </div>
+
     <div class="tab-pane fade" id="group">
-      <% @user.groups.each do |group| %>
-      <div class="list-group">
-        <h1><%= link_to "#{group.name}", group_path(group), class:"list-group-item" %></h1>
-          <p class="list-group-item-text"> <%= group.description %> </p>
+      <% if !@user.groups.empty? %>
+      <div class="well" style="margin-top: 20px">
+        <% @user.groups.each do |group| %>
+          <div class="list-group">
+            <h1><%= link_to "#{group.name}", group_path(group), class:"list-group-item" %></h1>
+              <p class="list-group-item-text"> <%= group.description %> </p>
+          </div>
+        <% end %>
       </div>
       <% end %>
     </div>
+
     <div class="tab-pane fade" id="event">
-      <% @user.events.each do |event| %>
-      <div class="list-group">
-        <h1><%= link_to "#{event.name}", event_path(event), class:"list-group-item" %></h1>
-          <p class="list-group-item-text"> <%= event.description %> </p>
+      <% if !@user.events.empty? %>
+      <div class="well" style="margin-top: 20px">
+        <% @user.events.each do |event| %>
+          <div class="list-group">
+            <h1><%= link_to "#{event.name}", event_path(event), class:"list-group-item" %></h1>
+            <p class="list-group-item-text"> <%= event.description %> </p>
+          </div>
+        <% end %>
       </div>
       <% end %>
     </div>
