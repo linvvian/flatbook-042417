@@ -1,5 +1,5 @@
 <div class="list-group">
   <% @users.each do |user| %>
-    <p><h4><%= link_to user.name, user_path(user), class: "list-group-item" %></h4></p>
+    <p><h4><%= link_to "#{image_tag(user.image, size:"40x40")} #{user.name}".html_safe, user_path(user), class: "list-group-item" %></h4></p>
   <% end %>
 </div>

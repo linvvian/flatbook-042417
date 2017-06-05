@@ -17,6 +17,8 @@ class CommentsController < ApplicationController
     find_comment.destroy
     redirect_from_params
   end
+  
+
 
   private
 

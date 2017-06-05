@@ -1,19 +1,31 @@
-<h1><%= @project.name %></h1>
-<p><%= @project.description %></p>
-<h2>Memebers:
-    <% @project.users.collect.with_index(1) do |u, i| %>
-    <%= link_to u.name, user_path(u) %><%= "," unless i == @project.users.length %>
-    <% end%>
-</h2>
-<h3>Github: <%= link_to "https://github.com/#{@project.github}", "https://github.com/#{@project.github}" %></h3>
-
-<br>
-<%= render "comments/show" %>
-
-<div id="buttons">
-  <% if project_member %>
-    <%= link_to "Edit", edit_project_path, class:"btn btn-warning" %>
-    &nbsp;
-    <%= link_to "Delete", project_path, method: "delete", class:"btn btn-danger" %>
-  <% end %>
+<div class="well">
+  <h1><%= @project.name %></h1>
+  <p><%= @project.description %></p>
+  <div id="buttons" class="btn-gorup pull-right">
+    <% if project_member || current_user.admin %>
+      <%= link_to "Edit", edit_project_path, class:"btn btn-warning" %>
+      &nbsp;
+      <%= link_to "Delete", project_path, method: "delete", class:"btn btn-danger" %>
+    <% end %>
+  </div>
+  <%= link_to "Back", projects_path, class:"btn btn-primary" %>
 </div>
+
+<hr>
+
+<div class="well">
+  <h2>Memebers:</h2>
+  <p>
+    <ol>
+      <% @project.users.collect do |u| %>
+        <li><%= link_to u.name, user_path(u) %></li>
+      <% end%>
+    </ol>
+  </p>
+
+  <h3><%= link_to "#{image_tag("http://www.freeiconspng.com/uploads/github-icon-1.png", size:"40x40")}#{@project.github}".html_safe, @project.github %></h3>
+
+</div>
+<br>
+
+<%= render "comments/show" %>
